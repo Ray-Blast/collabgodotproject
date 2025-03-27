@@ -1,10 +1,6 @@
 # Project Window Game Design Document
 ## By Ray & Iron Daddy
 
-### [ToBEMADE]
-
----
-
 # Introduction 
 
 ## Game Summary Pitch
