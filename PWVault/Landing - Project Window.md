@@ -18,3 +18,7 @@ Our project is currently being hosted on a GitHub repository. You can clone it f
 https://github.com/Ray-Blast/ProjectWindowGodot
 The project is set to public and should let you push commits to it (allegedly). If something is bugging out, let me know and I'll officially add you as a collaborator through GitHub's systems.
 
+## Game Design
+---
+For questions regarding the game design of the project, please take a look at [[Project Window Game Design Document]]. This is a living document that will be expanded upon as we iterate and develop the game.  It should incorporate all of the thought processes when it comes to our game vision. 
+
