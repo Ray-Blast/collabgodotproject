@@ -1,8 +1,7 @@
-# Project Window Game Design Document
-## By Ray & Iron Daddy
+Authored: Ray/Iron Daddy
 
 # Introduction 
-
+---
 ## Game Summary Pitch
 
 - A learning project focusing on the improvement of our skills by emulating a symphony of the night metroidvania gaming experience. This project will let us understand more regarding game design, dev, storytelling, and cooperation in a small team.
@@ -39,8 +38,9 @@
 - Young Adults (18-25 year olds)
     - Metroidvania fans 
     - RPG fans
-# Concept
 
+# Concept
+---
 ## Gameplay Overview
 
 - The general gameplay will consist of the player traversing the hand-crafted 2d manor, where they'll fight against respawning enemiesk as they try to get to the end of the level. At the end of each level, they'll have the opportunity to go against a mini boss, until the last one where they'll go up against the BBEG. 
@@ -75,6 +75,7 @@
 
 
 # Art
+---
 ## Design
 
 - 2D pixel art with gothic horror elements
@@ -82,6 +83,7 @@
     - Adding paralaxing elements to the foreground and background to give the impression of 3d space
 
 # Audio
+---
 ## Music
 - Lo-Fi action packed metal music
     - Tragic Prince (Symphony of the night)
@@ -89,6 +91,7 @@
 ## Sound Effects
 - Lo-Fi Retroesque sound cues
 # Game Experience
+---
 ## UI
 - Semi Stylized Early Modernesque generic UI 
 ## Controls
@@ -101,11 +104,26 @@
 - Spacebar = jump
 - CTRL = block
 # Development Timeline
+---
 
-- Start Date: 
+- **Start Date:** 
     - 3/25/25
-- Projected Finish Date:
-    - 4/09/25
-- Week 1
+- **Projected Finish Date:**
+    - 4/16/25
+
+- **Week 1 (3/24-3/30)**
     - Started out project setup
     - Finished GDD & Story write-up
+    - setup the basic project template
+    - setup beginning of player script
+    - basic functionality in the game
+	    - camera
+	    - player scene
+	    - pickups
+	    - enemies
+	- worked on game story some
+	- enemies conceptualized
+- **Week 2 (3/31-4/6)**
+	- Went to networking event, brought on new developers
+	- made obsidian vault for better note taking/documentation
+	- 

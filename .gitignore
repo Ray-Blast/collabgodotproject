@@ -6,6 +6,10 @@
 export.cfg
 export_credentials.cfg
 
+#obsidian related files
+.obsidian/workspace
+.obsidian
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 
