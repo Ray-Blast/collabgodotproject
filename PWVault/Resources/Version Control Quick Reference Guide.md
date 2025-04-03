@@ -1,3 +1,8 @@
+
+## Git CLI
+
+The main program that you will invoke when version controlling. Make sure you are in the specified directory before invoking any of the commands or it will error out/cause other issues.
+
 **git** 
 - command to invoke the git CLI
 
@@ -43,3 +48,25 @@ git log
 ### Read more: Git
 https://www.atlassian.com/git/glossary#terminology
 
+## GH CLI
+
+There may be times you want to specifically call GitHub centered commands. In which case make sure you have the [GitHub CLI installed](https://cli.github.com/) and authenticated.
+
+gh
+- command to invoke the GitHub CLI
+
+gh auth
+- command to authenticate yourself your local to your GitHub account
+
+gh repo create
+- command that will create a new repository from scratch, push an exisiting git repo, or else
+
+gh pr create (subcommands)
+- command that will create a pull request from the command line
+- Example: **gh pr create --title "Test pr" --body "This is a test for creating a pr" --reviewer Ray-Blast
+	- this will create a pull request with a set title, body, and asking someone to review the pull request
+	- you can choose not to include those, and command will allow you to add them in a follow up input prompt
+	- you can choose to open up the pr manager in the browser by doing **gh pr create --web**
+
+### Read More: GH
+https://cli.github.com/manual/gh
