@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="CollabGodotProject"
+config/name="ProjectWindow"
+config/description="2D Metroidvania with RPG elements"
+config/version="0.0.1"
 run/main_scene="uid://7hvgnk2j6jsb"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

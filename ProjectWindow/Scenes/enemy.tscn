@@ -1,6 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://b7oo4nqfityc4"]
+[gd_scene load_steps=19 format=3 uid="uid://b7oo4nqfityc4"]
 
-[ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/batFlappingLearningPixel16x16.png" id="1_hghv2"]
+[ext_resource type="Script" uid="uid://dxkq2rijt7v3y" path="res://Scenes/enemy_base.gd" id="1_afpow"]
+[ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png" id="1_hghv2"]
+[ext_resource type="Script" uid="uid://d4a26yarihxtv" path="res://Scripts/StateMachine/state_machine.gd" id="2_1f0kj"]
+[ext_resource type="Script" uid="uid://b44grlnqocixq" path="res://Scripts/StateMachine/enemy_states/enemy_idle.gd" id="4_287tu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt4ob"]
+size = Vector2(10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
 atlas = ExtResource("1_hghv2")
@@ -94,14 +100,21 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt4ob"]
-size = Vector2(10, 10)
-
 [node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_afpow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vt4ob")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m4x7e")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vt4ob")
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_1f0kj")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state_machine"]
+script = ExtResource("4_287tu")
+
+[node name="attacking" type="Node" parent="state_machine"]

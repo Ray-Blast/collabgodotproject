@@ -18,7 +18,13 @@ Our project is currently being hosted on a GitHub repository. You can clone it f
 https://github.com/Ray-Blast/ProjectWindowGodot
 The project is set to public and should let you push commits to it (allegedly). If something is bugging out, let me know and I'll officially add you as a collaborator through GitHub's systems.
 
-## Game Design
+## Pre-Production
 ---
+### Game Design Document
 For questions regarding the game design of the project, please take a look at [[Project Window Game Design Document]]. This is a living document that will be expanded upon as we iterate and develop the game.  It should incorporate all of the thought processes when it comes to our game vision. 
 
+## Backlog Management - Trello
+We'll be using Trello as a means to track our progress and break it down into manageable chunks. We'll use a sort of Kanban style board. You can [join our board here](https://trello.com/invite/b/67ef18f6a3e94a28ce63ba50/ATTI88ad366aa794f16b90071f0dc768422274F6B493/projectwindowboard). Feel free to add onto the To-Do list as well so that we may continue to chip away at it.
+
+### Learning Resources
+There's a lot of things that go into game development. I've compiled a small library of game dev resources to reference from time to time if you want. You can access a [google drive of ebooks here](https://drive.google.com/drive/folders/1CZxYwuVe6NWTsnu8qs4ZXtmQ1VhPBz2U?usp=sharing) that go into different game dev subjects and engines. You can find a dedicated Godot learning [YouTube playlist here](https://youtube.com/playlist?list=PLrT2fbyJrAIctd7zNUsdPakIllX2lhrzo&si=10kVdT1kPKxNpacN) that go into how to actually make games in Godot. A similar [YouTube playlist for Blender is here](https://www.youtube.com/playlist?list=PLL8svnS8fK0n8sENNU8CXbVn8DM2kK7ur). If you want to reference art assets or download some for placeholders, you can visit [Kenney.nl](https://www.kenney.nl/) for free assets (2D/3D). Finally since we'll be using Godot, take a look at [GDScript's documentation](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html) for reference or a few online concept tutorials on [GDQuest](https://www.gdquest.com/).

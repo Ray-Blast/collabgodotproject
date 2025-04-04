@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://btyvh6a67yg5y"]
 
-[ext_resource type="Script" uid="uid://byu4uyd1p7lau" path="res://Scripts/pickup_base.gd" id="1_cya6u"]
-[ext_resource type="Texture2D" uid="uid://c7rilmei2tb37" path="res://Assets/Sprites/Items/SpinningCoinTestSprite-Sheet.png" id="1_v7u4w"]
+[ext_resource type="Script" uid="uid://byu4uyd1p7lau" path="res://Scripts/pickups/pickup_base.gd" id="1_cya6u"]
+[ext_resource type="Texture2D" uid="uid://c7rilmei2tb37" path="res://Assets/Sprites/Items/Placeholder/SpinningCoinTestSprite-Sheet.png" id="1_v7u4w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7u4w"]
 radius = 7.07107

@@ -1,7 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dh0nciotk3wfb"]
+[gd_scene load_steps=22 format=3 uid="uid://dh0nciotk3wfb"]
 
 [ext_resource type="Script" uid="uid://phmyu3uv4cgg" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/batFlappingLearningPixel16x16.png" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://d4a26yarihxtv" path="res://Scripts/StateMachine/state_machine.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://buvlgko6t4lmk" path="res://Scripts/StateMachine/states/idle.gd" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://hc0my844aetm" path="res://Scripts/StateMachine/states/jump.gd" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://d3d652csc6xbx" path="res://Scripts/StateMachine/states/fall.gd" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://co72o1wx05awn" path="res://Scripts/StateMachine/states/move.gd" id="7_3smsa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
 radius = 3.0
@@ -110,3 +115,30 @@ sprite_frames = SubResource("SpriteFrames_v0iea")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.438763
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_6t5aa")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
+script = ExtResource("4_vgqql")
+fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+move_state = NodePath("../move")
+
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+script = ExtResource("5_fkybt")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+
+[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("6_x3wgy")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state")]
+script = ExtResource("7_3smsa")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+jump_state = NodePath("../jump")
