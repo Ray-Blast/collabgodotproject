@@ -1,12 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7oo4nqfityc4"]
+[gd_scene load_steps=21 format=3 uid="uid://d25bitnldbs1o"]
 
-[ext_resource type="Script" uid="uid://dxkq2rijt7v3y" path="res://Scenes/enemy_base.gd" id="1_afpow"]
+[ext_resource type="Script" uid="uid://dxkq2rijt7v3y" path="res://Scripts/Enemy/enemy_base.gd" id="1_0830c"]
 [ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png" id="1_hghv2"]
 [ext_resource type="Script" uid="uid://d4a26yarihxtv" path="res://Scripts/StateMachine/state_machine.gd" id="2_1f0kj"]
-[ext_resource type="Script" uid="uid://b44grlnqocixq" path="res://Scripts/StateMachine/enemy_states/enemy_idle.gd" id="4_287tu"]
+[ext_resource type="Script" uid="uid://buvlgko6t4lmk" path="res://Scripts/StateMachine/states/idle.gd" id="4_ghaa6"]
+[ext_resource type="Script" uid="uid://req8gm7ko6e0" path="res://Scripts/Enemy/enemy_movement_component.gd" id="5_0830c"]
+[ext_resource type="Script" uid="uid://co72o1wx05awn" path="res://Scripts/StateMachine/states/move.gd" id="5_ghaa6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt4ob"]
-size = Vector2(10, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hghv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
 atlas = ExtResource("1_hghv2")
@@ -101,20 +102,27 @@ animations = [{
 }]
 
 [node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_afpow")
+script = ExtResource("1_0830c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vt4ob")
+shape = SubResource("CapsuleShape2D_hghv2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m4x7e")
-autoplay = "default"
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_1f0kj")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine"]
-script = ExtResource("4_287tu")
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state")]
+script = ExtResource("4_ghaa6")
+move_state = NodePath("../move")
 
-[node name="attacking" type="Node" parent="state_machine"]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("5_ghaa6")
+idle_state = NodePath("../idle")
+move_speed = 100.0
+
+[node name="enemy_move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("5_0830c")
+parent = NodePath("..")

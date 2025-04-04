@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://7hvgnk2j6jsb"]
 
-[ext_resource type="Script" uid="uid://ca7fepx8ty16y" path="res://Scenes/game_manager.gd" id="1_3dryh"]
+[ext_resource type="Script" uid="uid://ca7fepx8ty16y" path="res://Scripts/game_manager.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dh0nciotk3wfb" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="PackedScene" uid="uid://b7oo4nqfityc4" path="res://Scenes/enemy.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://d25bitnldbs1o" path="res://Scenes/enemy.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/pickup.tscn" id="3_wrm1d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
@@ -21,12 +21,6 @@ zoom = Vector2(2, 2)
 
 [node name="Map" type="Node" parent="."]
 
-[node name="Enemy" parent="." instance=ExtResource("2_qxrlw")]
-position = Vector2(-87, -25)
-
-[node name="Enemy2" parent="." instance=ExtResource("2_qxrlw")]
-position = Vector2(77, -46)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 8)
 
@@ -35,3 +29,6 @@ shape = SubResource("WorldBoundaryShape2D_qxrlw")
 
 [node name="Pickup" parent="." instance=ExtResource("3_wrm1d")]
 position = Vector2(49, -16)
+
+[node name="Enemy" parent="." instance=ExtResource("2_qxrlw")]
+position = Vector2(-49, -14)

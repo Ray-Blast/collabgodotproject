@@ -4,15 +4,15 @@ extends State
 @export var idle_state: State
 @export var jump_state: State
 
-func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
+func process_input(_event: InputEvent) -> State:
+	if get_jump() and parent.is_on_floor():
 		return jump_state
 	return null
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	
-	var movement = Input.get_axis('left', 'right') * move_speed
+	var movement = get_movement_input() * move_speed
 	
 	if movement == 0:
 		return idle_state

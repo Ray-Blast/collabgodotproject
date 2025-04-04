@@ -72,8 +72,15 @@ Authored: Ray/Iron Daddy
 - Time Bonus effect
     - Incentive to finish the level as fast as you can, awarding gold/silver/bronze/no reward
 
-## Game Story
-![[GameStory#Game Story]]
+## Story
+
+![[Game's Story]]
+
+## Characters
+
+![[Quincy K. Reece]] 
+
+![[Enemies Overview]]
 
 # Art
 ---
