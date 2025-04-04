@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://7hvgnk2j6jsb"]
+[gd_scene load_steps=6 format=3 uid="uid://7hvgnk2j6jsb"]
 
+[ext_resource type="Script" uid="uid://ca7fepx8ty16y" path="res://Scenes/game_manager.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dh0nciotk3wfb" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://b7oo4nqfityc4" path="res://Scenes/enemy.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/pickup.tscn" id="3_wrm1d"]
@@ -10,6 +11,7 @@
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
+script = ExtResource("1_3dryh")
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
 position = Vector2(0, -3)
