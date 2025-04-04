@@ -7,7 +7,7 @@ Authored: Ray/Iron Daddy
 - A learning project focusing on the improvement of our skills by emulating a symphony of the night metroidvania gaming experience. This project will let us understand more regarding game design, dev, storytelling, and cooperation in a small team.
 ## Theme
   - Learning and collaboration
-    - With out theme of this project being collaboration and learning a new engine, we're aspiring to develop a joint project by expanding our horizions, delving into our fields of known study and other fields of new horizions. 
+    - With out theme of this project being collaboration and learning a new engine, we're aspiring to develop a joint project by expanding our horizons, delving into our fields of known study and other fields of new horizons. 
 
 ## Inspiration
 
@@ -23,7 +23,6 @@ Authored: Ray/Iron Daddy
 - PC
 - Web (attempt to)
 ## Development Software
-
 - Godot
 - Aseprite
 - Adobe Suite
@@ -73,6 +72,8 @@ Authored: Ray/Iron Daddy
 - Time Bonus effect
     - Incentive to finish the level as fast as you can, awarding gold/silver/bronze/no reward
 
+## Game Story
+![[GameStory#Game Story]]
 
 # Art
 ---
