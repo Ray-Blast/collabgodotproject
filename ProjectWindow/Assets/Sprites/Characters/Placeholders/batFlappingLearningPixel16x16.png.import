@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh63k26aqi6v6"
-path="res://.godot/imported/FireballGuylearning16x16.png-c3c6c01968fbd9f6ebaaf8acf1ef3728.ctex"
+uid="uid://crxq57eitv3ge"
+path="res://.godot/imported/batFlappingLearningPixel16x16.png-4e0480b7a348379883a9db5a8aacda40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/FireballGuylearning16x16.png"
-dest_files=["res://.godot/imported/FireballGuylearning16x16.png-c3c6c01968fbd9f6ebaaf8acf1ef3728.ctex"]
+source_file="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png"
+dest_files=["res://.godot/imported/batFlappingLearningPixel16x16.png-4e0480b7a348379883a9db5a8aacda40.ctex"]
 
 [params]
 
