@@ -17,7 +17,7 @@ script = ExtResource("1_3dryh")
 position = Vector2(0, -3)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="Map" type="Node" parent="."]
 
@@ -28,7 +28,7 @@ position = Vector2(0, 8)
 shape = SubResource("WorldBoundaryShape2D_qxrlw")
 
 [node name="Pickup" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(49, -16)
+position = Vector2(46, -5)
 
 [node name="Enemy" parent="." instance=ExtResource("2_qxrlw")]
-position = Vector2(-49, -14)
+position = Vector2(-47, -4)

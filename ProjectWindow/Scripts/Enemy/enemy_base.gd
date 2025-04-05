@@ -1,6 +1,5 @@
 class_name Enemy_Base extends CharacterBody2D
 
-
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $state_machine
 @onready var move_component: Node = $enemy_move_component
@@ -16,3 +15,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body)
