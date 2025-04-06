@@ -1,6 +1,5 @@
-class_name Enemy_Moveable extends Node
+class_name Enemy_Moveable extends Moveable
 
-@export var parent: CharacterBody2D
 var direction := 1.0
 
 func get_movement_direction() -> float:

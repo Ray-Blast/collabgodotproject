@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dh0nciotk3wfb"]
+[gd_scene load_steps=25 format=3 uid="uid://dh0nciotk3wfb"]
 
 [ext_resource type="Script" uid="uid://phmyu3uv4cgg" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png" id="2_cvnsp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://d3d652csc6xbx" path="res://Scripts/StateMachine/states/fall.gd" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://co72o1wx05awn" path="res://Scripts/StateMachine/states/move.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://c1citqb5hx8y3" path="res://Scripts/Player/player_movement_component.gd" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://c7r7p3f3r8fkm" path="res://Scripts/Health System/health_component.gd" id="9_f1ek2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
 radius = 3.0
@@ -117,7 +118,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 7
 script = ExtResource("1_v0iea")
 
@@ -158,10 +159,13 @@ idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 animation_name = "Move"
 
-[node name="move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
+[node name="move_component" type="Node" parent="."]
 script = ExtResource("8_8erm5")
-parent = NodePath("..")
 
 [node name="attackRay" type="RayCast2D" parent="."]
 target_position = Vector2(60, 0)
 collision_mask = 7
+
+[node name="health_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("9_f1ek2")
+parent = NodePath("..")
