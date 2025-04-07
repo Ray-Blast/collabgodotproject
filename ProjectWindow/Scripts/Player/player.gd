@@ -5,8 +5,11 @@ class_name Player extends CharacterBody2D
 @onready var move_component: Node = $move_component
 @onready var hit_coll: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var health_component: Health = $Health
+@onready var weaponTimer: Timer = $weaponAttack_Timer
 
-var attack_length: float = 60.0
+var can_attack: bool = true
+
+var attack_length: float = 33.0
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
@@ -14,7 +17,9 @@ func _ready() -> void:
 	state_machine.init(self, animations,move_component,health_component )
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("primary"):
+	if event.is_action_pressed("primary") && can_attack:
+		weaponTimer.start()
+		can_attack = false
 		hit_coll.disabled = false
 	elif event.is_action_released("primary"):
 		hit_coll.disabled = true
@@ -23,9 +28,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if velocity.x < 0:
-		hit_coll.position.x = -33
+		hit_coll.position.x = -attack_length
 	elif velocity.x >0:
-		hit_coll.position.x = 33
+		hit_coll.position.x = attack_length
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
@@ -33,3 +38,7 @@ func _process(delta: float) -> void:
 
 func _on_health_health_depleted() -> void:
 	state_machine.process_health(health_component.get_health())
+
+
+func _on_weapon_attack_timer_timeout() -> void:
+	can_attack = true

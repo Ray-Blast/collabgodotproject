@@ -162,12 +162,14 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+move_speed = 100.0
 
 [node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "death_state")]
 script = ExtResource("6_x3wgy")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+move_speed = 100.0
 
 [node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
 script = ExtResource("7_3smsa")
@@ -176,15 +178,16 @@ idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 death_state = NodePath("../death")
 animation_name = "Move"
+move_speed = 100.0
 
 [node name="death" type="Node" parent="state_machine"]
 script = ExtResource("9_pu2lt")
+move_speed = 0.0
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("9_f1ek2")
-damage = 2
 metadata/_custom_type_script = "uid://dle1tft7k67rn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -200,4 +203,9 @@ metadata/_custom_type_script = "uid://cye0ywfwe3wo0"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_f60y1")
 
+[node name="weaponAttack_Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
+[connection signal="timeout" from="weaponAttack_Timer" to="." method="_on_weapon_attack_timer_timeout"]

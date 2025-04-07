@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d25bitnldbs1o"]
+[gd_scene load_steps=16 format=3 uid="uid://d25bitnldbs1o"]
 
 [ext_resource type="Script" uid="uid://dxkq2rijt7v3y" path="res://Scripts/Enemy/enemy_base.gd" id="1_0830c"]
 [ext_resource type="Script" uid="uid://d4a26yarihxtv" path="res://Scripts/StateMachine/state_machine.gd" id="2_1f0kj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cye0ywfwe3wo0" path="res://Scripts/HealthSystem/hurtbox.gd" id="9_8uf12"]
 [ext_resource type="Script" uid="uid://kbrvd8rthkxd" path="res://Scripts/StateMachine/states/death.gd" id="9_haro7"]
 [ext_resource type="Script" uid="uid://rmb87n48c1f0" path="res://Scripts/HealthSystem/health.gd" id="10_po0sg"]
+[ext_resource type="Script" uid="uid://dle1tft7k67rn" path="res://Scripts/HealthSystem/hitbox.gd" id="12_56vhr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hghv2"]
 radius = 5.0
@@ -36,6 +37,7 @@ script = ExtResource("1_0830c")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("10_po0sg")
+max_health = 2.0
 metadata/_custom_type_script = "uid://rmb87n48c1f0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -54,6 +56,7 @@ fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+move_speed = 100.0
 
 [node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
 script = ExtResource("5_ghaa6")
@@ -61,7 +64,7 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 death_state = NodePath("../death")
-move_speed = 100.0
+move_speed = 75.0
 
 [node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "death_state")]
 script = ExtResource("6_auwsv")
@@ -80,6 +83,7 @@ move_speed = 100.0
 
 [node name="death" type="Node" parent="state_machine"]
 script = ExtResource("9_haro7")
+move_speed = 0.0
 
 [node name="enemy_move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("5_0830c")
@@ -92,6 +96,14 @@ script = ExtResource("9_8uf12")
 health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(1.6, 1.16)
+shape = SubResource("CapsuleShape2D_hghv2")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("12_56vhr")
+metadata/_custom_type_script = "uid://dle1tft7k67rn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 scale = Vector2(1.6, 1.16)
 shape = SubResource("CapsuleShape2D_hghv2")
 

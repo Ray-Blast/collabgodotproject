@@ -1,10 +1,25 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5bdn3i5y7gpk"]
 
-[ext_resource type="Script" uid="uid://c5eknhje8dax5" path="res://Scenes/platform_base.gd" id="1_avdqm"]
-[ext_resource type="Texture2D" uid="uid://by6d2k48sdt2" path="res://Assets/Sprites/tempPlatform.png" id="1_hiv0q"]
+[ext_resource type="Script" uid="uid://c5eknhje8dax5" path="res://Scripts/LevelItems/platform_base.gd" id="1_avdqm"]
+[ext_resource type="Texture2D" uid="uid://by6d2k48sdt2" path="res://Assets/Sprites/levels/placeholder/tempPlatform.png" id="1_hiv0q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4afrg"]
 size = Vector2(44, 10)
+
+[sub_resource type="Animation" id="Animation_4afrg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_avdqm"]
 resource_name = "move"
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-1.56, 1),
 "update": 0,
 "values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_4afrg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow2D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_62k5h"]
