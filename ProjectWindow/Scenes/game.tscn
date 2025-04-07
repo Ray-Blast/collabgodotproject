@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7hvgnk2j6jsb"]
+[gd_scene load_steps=9 format=3 uid="uid://7hvgnk2j6jsb"]
 
 [ext_resource type="Script" uid="uid://ca7fepx8ty16y" path="res://Scripts/game_manager.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dh0nciotk3wfb" path="res://Scenes/player.tscn" id="1_ebmjs"]
@@ -11,6 +11,12 @@
 [sub_resource type="Curve2D" id="Curve2D_wowpa"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 21, -3, 0, 0, 0, 0, 246, -5)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_i6g32"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 23, 31, 0, 0, 0, 0, 24, -73)
 }
 point_count = 2
 
@@ -41,6 +47,13 @@ position = Vector2(46, -5)
 position = Vector2(-47, -4)
 
 [node name="Platform" parent="." instance=ExtResource("5_wowpa")]
-position = Vector2(109, -11)
+position = Vector2(100, -87)
 curve = SubResource("Curve2D_wowpa")
 loop = false
+speed_scale = 0.5
+
+[node name="Platform2" parent="." instance=ExtResource("5_wowpa")]
+position = Vector2(78, -27)
+curve = SubResource("Curve2D_i6g32")
+loop = false
+speed_scale = 1.5

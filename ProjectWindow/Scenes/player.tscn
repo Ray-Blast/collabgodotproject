@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dh0nciotk3wfb"]
+[gd_scene load_steps=28 format=3 uid="uid://dh0nciotk3wfb"]
 
 [ext_resource type="Script" uid="uid://phmyu3uv4cgg" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png" id="2_cvnsp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://co72o1wx05awn" path="res://Scripts/StateMachine/states/move.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://c1citqb5hx8y3" path="res://Scripts/Player/player_movement_component.gd" id="8_8erm5"]
 [ext_resource type="Script" uid="uid://dle1tft7k67rn" path="res://Scripts/HealthSystem/hitbox.gd" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://cye0ywfwe3wo0" path="res://Scripts/HealthSystem/hurtbox.gd" id="11_gymyn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
 radius = 3.0
@@ -182,3 +183,11 @@ metadata/_custom_type_script = "uid://dle1tft7k67rn"
 position = Vector2(33, 0)
 shape = SubResource("RectangleShape2D_tx1dd")
 disabled = true
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("11_gymyn")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cye0ywfwe3wo0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_f60y1")

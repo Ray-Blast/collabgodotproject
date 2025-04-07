@@ -50,6 +50,7 @@ script = ExtResource("1_avdqm")
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(28.1157, 0)
 progress = 28.129
+rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
 remote_path = NodePath("../../AnimatableBody2D")
