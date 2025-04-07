@@ -17,10 +17,5 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass
-
-
 func _on_health_health_depleted() -> void:
 	state_machine.process_health(health_component.get_health())

@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://7hvgnk2j6jsb"]
+[gd_scene load_steps=20 format=4 uid="uid://7hvgnk2j6jsb"]
 
 [ext_resource type="Script" uid="uid://ca7fepx8ty16y" path="res://Scripts/game_manager.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dh0nciotk3wfb" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://d25bitnldbs1o" path="res://Scenes/enemy.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dyv8n55i2m1w7" path="res://Scenes/breakable.tscn" id="3_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/pickup.tscn" id="3_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://dsvll7ksjotbx" path="res://Assets/Sprites/levels/placeholder/testSpritesForLevels.png" id="5_wowpa"]
 [ext_resource type="PackedScene" uid="uid://b5bdn3i5y7gpk" path="res://Scenes/platform_base.tscn" id="6_i6g32"]
@@ -75,7 +76,7 @@ occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
-[node name="SandboxLevelGame" type="Node2D"]
+[node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -86,9 +87,6 @@ position = Vector2(0, -3)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
-
-[node name="Pickup" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(46, -5)
 
 [node name="LevelDesign" type="Node" parent="."]
 
@@ -113,6 +111,31 @@ shadow_enabled = true
 tile_map_data = PackedByteArray("AAD8/wAAAAACAAEAAAD9/wAAAAACAAEAAAD+/wAAAAACAAEAAAD//wAAAAACAAEAAAAAAAAAAAACAAEAAAABAAAAAAACAAEAAAACAAAAAAACAAEAAAADAAAAAAACAAEAAAAEAAAAAAACAAEAAAAFAAAAAAACAAEAAAD7/wAAAAACAAEAAAD6/wAAAAACAAIAAAD5/wAAAAACAAEAAAD4/wAAAAACAAEAAAD3/wAAAAACAAEAAAD2/wAAAAACAAEAAAD1/wAAAAACAAEAAAD0/wAAAAACAAEAAADz/wAAAAACAAEAAADy/wAAAAACAAIAAADy////AAADAAIAAADy//7/AAADAAIAAADy//3/AAADAAIAAAD6////AAACAAEAAADy//r/AAACAAMAAADz//r/AAACAAMAAAD0//r/AAACAAMAAAD1//r/AAACAAMAAAD2//r/AAACAAMAAAD3//r/AAACAAMAAAD4//r/AAACAAMAAAD5//r/AAACAAMAAAD6//r/AAACAAMAAAD7//r/AAACAAMAAAD8//r/AAACAAMAAAD9//r/AAACAAMAAAD+//r/AAACAAMAAAD///r/AAACAAMAAAAAAPr/AAACAAMAAAABAPr/AAACAAMAAAACAPr/AAACAAMAAAADAPr/AAACAAMAAAAEAPr/AAACAAMAAAAFAPr/AAADAAMAAAAFAPn/AAADAAIAAAAFAPj/AAADAAIAAAAEAPn/AAACAAIAAAADAPn/AAACAAIAAAACAPn/AAACAAIAAAABAPn/AAACAAIAAAAAAPn/AAACAAIAAAD///n/AAACAAIAAAD+//n/AAACAAIAAAD9//n/AAACAAIAAAD8//n/AAACAAIAAAD7//n/AAACAAIAAAD6//n/AAACAAIAAAD5//n/AAACAAIAAAD4//n/AAACAAIAAAD3//n/AAACAAIAAAD4//j/AAACAAIAAAD5//j/AAACAAIAAAD6//j/AAACAAIAAAD7//j/AAACAAIAAAD8//j/AAACAAIAAAD9//j/AAACAAIAAAD+//j/AAACAAIAAAD///j/AAACAAIAAAAAAPj/AAACAAIAAAABAPj/AAACAAIAAAACAPj/AAACAAIAAAADAPj/AAACAAIAAAAEAPj/AAACAAIAAAAFAPf/AAADAAEAAAAEAPf/AAACAAEAAAADAPf/AAACAAIAAAACAPf/AAACAAEAAAABAPf/AAACAAEAAAAAAPf/AAACAAEAAAD///f/AAACAAEAAAD+//f/AAACAAEAAAD9//f/AAACAAEAAAD8//f/AAACAAIAAAD7//f/AAACAAEAAAD6//f/AAACAAEAAAD5//f/AAACAAEAAAD4//f/AAACAAEAAAD3//f/AAABAAEAAAD2//j/AAABAAEAAADx//n/AAACAAIAAADx//r/AAACAAIAAADy//n/AAACAAEAAADz//n/AAACAAEAAAD0//n/AAACAAEAAAD1//n/AAACAAEAAAD2//n/AAACAAIAAAD3//j/AAACAAIAAAAGAAAAAAACAAEAAAAHAAAAAAACAAEAAAAIAAAAAAACAAEAAAAJAAAAAAACAAEAAAAKAAAAAAACAAEAAAALAAAAAAACAAEAAAAMAP//AAABAAIAAAAMAP7/AAACAAIAAAAMAP3/AAABAAIAAAAMAPz/AAABAAIAAAAMAPv/AAABAAIAAAAMAPr/AAABAAIAAAAMAPn/AAABAAIAAAAMAPj/AAABAAIAAAAMAPf/AAABAAIAAAAMAAAAAAACAAIAAAAMAPX/AAABAAIAAAAMAPb/AAABAAIAAAAMAPT/AAABAAIAAAAMAPP/AAACAAIAAAALAPP/AAACAAMAAAAKAPP/AAACAAMAAAAJAPP/AAACAAMAAAAIAPP/AAACAAMAAAAHAPP/AAACAAMAAAAGAPP/AAACAAMAAAAFAPP/AAACAAMAAAAEAPP/AAACAAMAAAADAPP/AAACAAMAAAACAPP/AAACAAMAAAABAPP/AAACAAMAAAAAAPP/AAACAAMAAAD///P/AAACAAMAAAD///L/AAACAAIAAAD+//L/AAACAAIAAAD9//L/AAACAAIAAAD+//P/AAACAAMAAAD9//P/AAACAAMAAAD8//P/AAACAAMAAAD7//P/AAACAAMAAAD6//P/AAACAAMAAAD5//P/AAACAAMAAAD4//P/AAACAAMAAAD3//P/AAACAAMAAAD2//P/AAACAAMAAAD1//P/AAACAAMAAAD0//P/AAACAAMAAADz//P/AAACAAMAAADy//P/AAACAAMAAAD8//L/AAACAAIAAAAAAPL/AAACAAIAAAABAPL/AAACAAIAAAACAPL/AAACAAIAAAADAPL/AAACAAIAAAD7//L/AAACAAIAAAD6//L/AAACAAIAAAD5//L/AAACAAIAAAD4//L/AAACAAIAAAD3//L/AAACAAIAAAD2//L/AAACAAIAAAD1//L/AAACAAIAAAD0//L/AAACAAIAAADz//L/AAACAAIAAADy//L/AAACAAIAAAAEAPL/AAACAAIAAAAFAPL/AAACAAIAAAAGAPL/AAACAAIAAAAHAPL/AAACAAIAAAAIAPL/AAACAAIAAAAJAPL/AAACAAIAAAAKAPL/AAACAAIAAAALAPL/AAACAAIAAAAMAPL/AAACAAIAAAADAPb/AAACAAIAAAD8//b/AAACAAIAAAALAP3/AAACAAEAAAAKAP3/AAABAAEAAAAKAP7/AAABAAMAAAALAP7/AAACAAMAAADx//j/AAADAAIAAADx//f/AAADAAIAAADx//b/AAADAAIAAADx//X/AAADAAIAAADx//T/AAADAAIAAADx//P/AAACAAIAAADy//z/AAADAAIAAADy//v/AAADAAIAAADx//v/AAACAAIAAADx//z/AAACAAIAAADx//3/AAACAAIAAADx//7/AAACAAIAAADx////AAACAAIAAADx/wAAAAACAAIAAADw/wAAAAACAAIAAADw////AAACAAIAAADw//7/AAACAAIAAADw//3/AAACAAIAAADw//z/AAACAAIAAADw//v/AAACAAIAAADw//r/AAACAAIAAADw//n/AAACAAIAAADw//j/AAACAAIAAADw//f/AAACAAIAAADw//b/AAACAAIAAADw//X/AAACAAIAAADw//T/AAACAAIAAADw//P/AAACAAIAAADw//L/AAACAAIAAADx//L/AAACAAIAAAA=")
 tile_set = SubResource("TileSet_1l0tm")
 
+[node name="pickups" type="Node" parent="LevelDesign"]
+
+[node name="Pickup" parent="LevelDesign/pickups" instance=ExtResource("3_wrm1d")]
+position = Vector2(-55, -170)
+
+[node name="Pickup2" parent="LevelDesign/pickups" instance=ExtResource("3_wrm1d")]
+position = Vector2(56, -167)
+
+[node name="Pickup3" parent="LevelDesign/pickups" instance=ExtResource("3_wrm1d")]
+position = Vector2(46, -5)
+
+[node name="breakables" type="Node" parent="LevelDesign"]
+
+[node name="Breakable" parent="LevelDesign/breakables" instance=ExtResource("3_1l0tm")]
+position = Vector2(-62, -9)
+
+[node name="Breakable2" parent="LevelDesign/breakables" instance=ExtResource("3_1l0tm")]
+position = Vector2(187, -8)
+
+[node name="Breakable3" parent="LevelDesign/breakables" instance=ExtResource("3_1l0tm")]
+position = Vector2(-132, -152)
+
+[node name="Breakable4" parent="LevelDesign/breakables" instance=ExtResource("3_1l0tm")]
+position = Vector2(84, -151)
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_qxrlw")]
@@ -120,12 +143,6 @@ position = Vector2(180, -57)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2_qxrlw")]
 position = Vector2(1, -157)
-
-[node name="Pickup" parent="Enemies" instance=ExtResource("3_wrm1d")]
-position = Vector2(-55, -170)
-
-[node name="Pickup2" parent="Enemies" instance=ExtResource("3_wrm1d")]
-position = Vector2(56, -167)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2_qxrlw")]
 position = Vector2(-199, -124)
