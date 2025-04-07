@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://btyvh6a67yg5y"]
+[gd_scene load_steps=24 format=3 uid="uid://btyvh6a67yg5y"]
 
 [ext_resource type="Script" uid="uid://byu4uyd1p7lau" path="res://Scripts/pickups/pickup_base.gd" id="1_cya6u"]
 [ext_resource type="Texture2D" uid="uid://c7rilmei2tb37" path="res://Assets/Sprites/Items/Placeholder/SpinningCoinTestSprite-Sheet.png" id="1_v7u4w"]
+[ext_resource type="Script" uid="uid://dle1tft7k67rn" path="res://Scripts/HealthSystem/hitbox.gd" id="3_nya46"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7u4w"]
 radius = 7.07107
@@ -141,6 +142,8 @@ animations = [{
 }]
 
 [node name="Pickup" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_cya6u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -150,5 +153,13 @@ shape = SubResource("CircleShape2D_v7u4w")
 sprite_frames = SubResource("SpriteFrames_q1din")
 autoplay = "default"
 frame_progress = 0.724162
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_nya46")
+damage = -2
+metadata/_custom_type_script = "uid://dle1tft7k67rn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_v7u4w")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

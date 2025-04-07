@@ -72,6 +72,10 @@ Authored: Ray/Iron Daddy
 - Time Bonus effect
     - Incentive to finish the level as fast as you can, awarding gold/silver/bronze/no reward
 
+## Tetritary Mechanics
+- Health System
+
+
 ## Story
 
 ![[Game's Story]]

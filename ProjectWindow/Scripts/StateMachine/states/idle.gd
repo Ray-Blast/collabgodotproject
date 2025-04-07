@@ -3,6 +3,7 @@ extends State
 @export var fall_state: State
 @export var jump_state: State
 @export var move_state: State
+@export var death_state: State
 
 func enter() -> void:
 	super()
@@ -21,4 +22,10 @@ func process_physics(delta: float) -> State:
 	
 	if !parent.is_on_floor():
 		return fall_state
+	return null
+
+
+func process_health(current_health: float) -> State:
+	if current_health <= 0:
+		return death_state
 	return null
