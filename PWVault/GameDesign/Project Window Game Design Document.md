@@ -74,7 +74,6 @@ Authored: Ray/Iron Daddy
 
 ## Tetritary Mechanics
 - Health System
-[[Health System (GAME).canvas|Health System (GAME)]]
 
 
 ## Story

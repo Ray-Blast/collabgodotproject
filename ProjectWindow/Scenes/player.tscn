@@ -1,13 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://dh0nciotk3wfb"]
+[gd_scene load_steps=27 format=3 uid="uid://dh0nciotk3wfb"]
 
 [ext_resource type="Script" uid="uid://phmyu3uv4cgg" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://rmb87n48c1f0" path="res://Scripts/HealthSystem/health.gd" id="2_tx1dd"]
 [ext_resource type="Script" uid="uid://d4a26yarihxtv" path="res://Scripts/StateMachine/state_machine.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://buvlgko6t4lmk" path="res://Scripts/StateMachine/states/idle.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://hc0my844aetm" path="res://Scripts/StateMachine/states/jump.gd" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://d3d652csc6xbx" path="res://Scripts/StateMachine/states/fall.gd" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://co72o1wx05awn" path="res://Scripts/StateMachine/states/move.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://c1citqb5hx8y3" path="res://Scripts/Player/player_movement_component.gd" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://dle1tft7k67rn" path="res://Scripts/HealthSystem/hitbox.gd" id="9_f1ek2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
 radius = 3.0
@@ -117,9 +119,16 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx1dd"]
+size = Vector2(52, 7)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 7
 script = ExtResource("1_v0iea")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_tx1dd")
+metadata/_custom_type_script = "uid://rmb87n48c1f0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_f60y1")
@@ -162,6 +171,14 @@ animation_name = "Move"
 script = ExtResource("8_8erm5")
 parent = NodePath("..")
 
-[node name="attackRay" type="RayCast2D" parent="."]
-target_position = Vector2(60, 0)
-collision_mask = 7
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_f1ek2")
+damage = 2
+metadata/_custom_type_script = "uid://dle1tft7k67rn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(33, 0)
+shape = SubResource("RectangleShape2D_tx1dd")
+disabled = true

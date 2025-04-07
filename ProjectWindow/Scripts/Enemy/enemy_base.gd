@@ -19,3 +19,7 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	pass
+
+
+func _on_health_health_depleted() -> void:
+	queue_free()
