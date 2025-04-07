@@ -3,9 +3,10 @@ class_name Enemy_Base extends CharacterBody2D
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $state_machine
 @onready var move_component: Node = $enemy_move_component
+@onready var health_component: Health = $Health
 
 func _ready() -> void:
-	state_machine.init(self, animations, move_component)
+	state_machine.init(self, animations, move_component,health_component)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -22,4 +23,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_health_health_depleted() -> void:
-	queue_free()
+	state_machine.process_health(health_component.get_health())

@@ -8,6 +8,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var parent: CharacterBody2D
 var animations: AnimatedSprite2D
 var move_component
+var health_component
 
 func enter() -> void:
 	animations.play(animation_name)
@@ -30,3 +31,5 @@ func get_movement_input() -> float:
 func get_jump() -> bool:
 	return move_component.wants_jump()
 	
+func process_health(_current_health: float) -> State:
+	return null

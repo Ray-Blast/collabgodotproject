@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dh0nciotk3wfb"]
+[gd_scene load_steps=29 format=3 uid="uid://dh0nciotk3wfb"]
 
 [ext_resource type="Script" uid="uid://phmyu3uv4cgg" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://crxq57eitv3ge" path="res://Assets/Sprites/Characters/Placeholders/batFlappingLearningPixel16x16.png" id="2_cvnsp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://co72o1wx05awn" path="res://Scripts/StateMachine/states/move.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://c1citqb5hx8y3" path="res://Scripts/Player/player_movement_component.gd" id="8_8erm5"]
 [ext_resource type="Script" uid="uid://dle1tft7k67rn" path="res://Scripts/HealthSystem/hitbox.gd" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://kbrvd8rthkxd" path="res://Scripts/StateMachine/states/death.gd" id="9_pu2lt"]
 [ext_resource type="Script" uid="uid://cye0ywfwe3wo0" path="res://Scripts/HealthSystem/hurtbox.gd" id="11_gymyn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
@@ -131,6 +132,10 @@ script = ExtResource("1_v0iea")
 script = ExtResource("2_tx1dd")
 metadata/_custom_type_script = "uid://rmb87n48c1f0"
 
+[node name="move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("8_8erm5")
+parent = NodePath("..")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_f60y1")
 
@@ -143,34 +148,37 @@ autoplay = "Idle"
 script = ExtResource("3_6t5aa")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "death_state")]
 script = ExtResource("4_vgqql")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
+death_state = NodePath("../death")
 animation_name = "Idle"
 
-[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "death_state")]
 script = ExtResource("5_fkybt")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
+death_state = NodePath("../death")
 
-[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state")]
+[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "death_state")]
 script = ExtResource("6_x3wgy")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
+death_state = NodePath("../death")
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
 script = ExtResource("7_3smsa")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
+death_state = NodePath("../death")
 animation_name = "Move"
 
-[node name="move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("8_8erm5")
-parent = NodePath("..")
+[node name="death" type="Node" parent="state_machine"]
+script = ExtResource("9_pu2lt")
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 2
@@ -191,3 +199,5 @@ metadata/_custom_type_script = "uid://cye0ywfwe3wo0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_f60y1")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

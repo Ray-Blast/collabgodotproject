@@ -3,7 +3,9 @@ extends State
 @export var fall_state: State
 @export var idle_state: State
 @export var move_state: State
+@export var death_state: State
 @export var jump_force: float = 300.0
+
 
 func enter() -> void:
 	super()
@@ -26,5 +28,9 @@ func process_physics(delta: float) -> State:
 		if movement != 0:
 			return move_state
 		return idle_state
-	
+	return null
+
+func process_health(current_health: float) -> State:
+	if current_health <= 0:
+		return death_state
 	return null
