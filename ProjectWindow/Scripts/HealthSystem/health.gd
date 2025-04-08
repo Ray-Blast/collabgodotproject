@@ -12,7 +12,7 @@ var current_health: float = max_health : set = set_health, get = get_health
 
 
 func set_max_health(value: float):
-	var clamped_value = 1 if value <= 0 else value
+	var clamped_value: float = 1.0 if value <= 0.0 else value
 	
 	if not clamped_value == max_health:
 		var difference = clamped_value - max_health
@@ -54,7 +54,7 @@ func set_health(value: float):
 	
 	if clamped_value != current_health:
 		var difference = clamped_value - current_health
-		current_health = value
+		current_health = clamped_value
 		health_changed.emit(difference)
 		
 		if current_health == 0:
