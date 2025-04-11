@@ -1,6 +1,6 @@
 class_name Enemy_Moveable extends Moveable
 
-var direction := 1.0
+var direction := 1
 
 func get_movement_direction() -> float:
 	if parent.is_on_wall():

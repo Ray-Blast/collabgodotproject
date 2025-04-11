@@ -28,7 +28,5 @@ func process_physics(delta: float) -> State:
 
 func process_health(current_health: float) -> State:
 	if current_health <= 0:
-			
-		print("dying")
 		return death_state
 	return null

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpeysufdawxbe"]
+
+[ext_resource type="PackedScene" uid="uid://d25bitnldbs1o" path="res://Scenes/EnemyScenes/enemy.tscn" id="1_hn2fl"]
+[ext_resource type="Script" uid="uid://baxw84py1dvhs" path="res://Scripts/Enemy/enemy_brusier.gd" id="2_232tx"]
+[ext_resource type="Script" uid="uid://req8gm7ko6e0" path="res://Scripts/Enemy/enemy_movement_component.gd" id="3_s3uds"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_232tx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[node name="EnemyBrusier" instance=ExtResource("1_hn2fl")]
+script = ExtResource("2_232tx")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_232tx")
+animation = &"move"
+autoplay = "idle"
+
+[node name="move_component" parent="." index="4" node_paths=PackedStringArray("parent")]
+script = ExtResource("3_s3uds")
+parent = NodePath("..")

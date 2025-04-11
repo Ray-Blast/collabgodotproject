@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ca7fepx8ty16y" path="res://Scripts/game_manager.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://dh0nciotk3wfb" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="PackedScene" uid="uid://d25bitnldbs1o" path="res://Scenes/enemy.tscn" id="2_qxrlw"]
-[ext_resource type="PackedScene" uid="uid://dyv8n55i2m1w7" path="res://Scenes/breakable.tscn" id="3_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/pickup.tscn" id="3_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://dyv8n55i2m1w7" path="res://Scenes/LevelScenes/breakable.tscn" id="3_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/LevelScenes/pickup.tscn" id="3_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://dsvll7ksjotbx" path="res://Assets/Sprites/levels/placeholder/testSpritesForLevels.png" id="5_wowpa"]
-[ext_resource type="PackedScene" uid="uid://b5bdn3i5y7gpk" path="res://Scenes/platform_base.tscn" id="6_i6g32"]
+[ext_resource type="PackedScene" uid="uid://b5bdn3i5y7gpk" path="res://Scenes/LevelScenes/platform_base.tscn" id="6_i6g32"]
+[ext_resource type="PackedScene" uid="uid://bqwqe71miamtb" path="res://Scenes/EnemyScenes/enemy_ranged.tscn" id="7_1l0tm"]
 
 [sub_resource type="Curve2D" id="Curve2D_i6g32"]
 _data = {
@@ -138,14 +138,5 @@ position = Vector2(84, -151)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("2_qxrlw")]
-position = Vector2(180, -57)
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource("2_qxrlw")]
-position = Vector2(1, -157)
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource("2_qxrlw")]
-position = Vector2(-199, -124)
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("2_qxrlw")]
-position = Vector2(-153, -14)
+[node name="EnemyRanged" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(76, -11)

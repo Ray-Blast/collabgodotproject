@@ -1,10 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://d25bitnldbs1o"]
+[gd_scene load_steps=11 format=3 uid="uid://d25bitnldbs1o"]
 
-[ext_resource type="Script" uid="uid://dxkq2rijt7v3y" path="res://Scripts/Enemy/enemy_base.gd" id="1_0830c"]
 [ext_resource type="Script" uid="uid://d4a26yarihxtv" path="res://Scripts/StateMachine/state_machine.gd" id="2_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://4qdvn1r2acls" path="res://Assets/Sprites/Characters/zombie.png" id="2_ghaa6"]
 [ext_resource type="Script" uid="uid://buvlgko6t4lmk" path="res://Scripts/StateMachine/states/idle.gd" id="4_ghaa6"]
-[ext_resource type="Script" uid="uid://req8gm7ko6e0" path="res://Scripts/Enemy/enemy_movement_component.gd" id="5_0830c"]
 [ext_resource type="Script" uid="uid://co72o1wx05awn" path="res://Scripts/StateMachine/states/move.gd" id="5_ghaa6"]
 [ext_resource type="Script" uid="uid://hc0my844aetm" path="res://Scripts/StateMachine/states/jump.gd" id="6_auwsv"]
 [ext_resource type="Script" uid="uid://d3d652csc6xbx" path="res://Scripts/StateMachine/states/fall.gd" id="7_8uf12"]
@@ -17,23 +14,7 @@
 radius = 5.0
 height = 18.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1dp5w"]
-atlas = ExtResource("2_ghaa6")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_m4x7e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1dp5w")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
-script = ExtResource("1_0830c")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("10_po0sg")
@@ -44,7 +25,6 @@ metadata/_custom_type_script = "uid://rmb87n48c1f0"
 shape = SubResource("CapsuleShape2D_hghv2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_m4x7e")
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_1f0kj")
@@ -56,6 +36,7 @@ fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+animation_name = "idle"
 move_speed = 100.0
 
 [node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
@@ -64,6 +45,7 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 death_state = NodePath("../death")
+animation_name = "move"
 move_speed = 75.0
 
 [node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "death_state")]
@@ -72,6 +54,7 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+jump_force = 100.0
 move_speed = 100.0
 
 [node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "death_state")]
@@ -85,9 +68,7 @@ move_speed = 100.0
 script = ExtResource("9_haro7")
 move_speed = 0.0
 
-[node name="enemy_move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("5_0830c")
-parent = NodePath("..")
+[node name="move_component" type="Node" parent="."]
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 0
