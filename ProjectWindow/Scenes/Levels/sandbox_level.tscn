@@ -153,6 +153,7 @@ loop = false
 [node name="CanvasModulate" type="CanvasModulate" parent="LevelDesign/LighitngStuff"]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="LevelDesign/LighitngStuff"]
+visible = false
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 

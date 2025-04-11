@@ -1,11 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6n100wk03los"]
+[gd_scene load_steps=5 format=3 uid="uid://c6n100wk03los"]
 
 [ext_resource type="PackedScene" uid="uid://d25bitnldbs1o" path="res://Scenes/EnemyScenes/enemy.tscn" id="1_htpsb"]
 [ext_resource type="Script" uid="uid://drof2jrefd45i" path="res://Scripts/Enemy/enemy_ranged.gd" id="2_kowwf"]
 [ext_resource type="Script" uid="uid://buirrldrvssku" path="res://Scripts/Enemy/Ranged_move_component.gd" id="3_kowwf"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_eypll"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
 [node name="EnemyRanged" instance=ExtResource("1_htpsb")]
 script = ExtResource("2_kowwf")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_eypll")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="move_component" parent="." index="4" node_paths=PackedStringArray("parent")]
 script = ExtResource("3_kowwf")

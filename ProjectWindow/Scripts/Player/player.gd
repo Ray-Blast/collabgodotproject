@@ -3,11 +3,10 @@ class_name Player extends CharacterBody2D
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $state_machine
 @onready var move_component: Node = $move_component
-@onready var hit_coll: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var health_component: Health = $Health
 @onready var weaponTimer: Timer = $weaponAttack_Timer
+@onready var hit_box: HitBox = $HitBox
 
-var can_attack: bool = true
 
 var attack_length: float = 16.0
 
@@ -29,21 +28,19 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("primary") && can_attack:
-		#checkIfAttackHits()
+	if event.is_action_pressed("primary") && hit_box.can_attack:
 		weaponTimer.start()
-		can_attack = false
-		hit_coll.disabled = false
+		hit_box.set_can_attack(false)
 	elif event.is_action_released("primary"):
-		hit_coll.disabled = true
+		hit_box.set_can_attack(true)
 	else:
 		state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
 	if velocity.x < 0:
-		hit_coll.position.x = -attack_length
+		hit_box.get_child(0).position.x = -attack_length
 	elif velocity.x >0:
-		hit_coll.position.x = attack_length
+		hit_box.get_child(0).position.x = attack_length
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
@@ -53,4 +50,4 @@ func _on_health_health_depleted() -> void:
 	state_machine.process_health(health_component.get_health())
 
 func _on_weapon_attack_timer_timeout() -> void:
-	can_attack = true
+	hit_box.set_can_attack(true)
