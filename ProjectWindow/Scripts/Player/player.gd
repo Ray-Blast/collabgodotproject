@@ -11,6 +11,7 @@ var can_attack: bool = true
 
 var attack_length: float = 33.0
 
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
