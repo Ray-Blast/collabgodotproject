@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1gx33k7wl7w8"]
+
+[ext_resource type="Script" uid="uid://b71r8vuyj4ma3" path="res://Scripts/pickups/phsyx_pickup.gd" id="1_af2nx"]
+[ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/FlowItemScenes/pickup.tscn" id="2_mk6li"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cumd1"]
+radius = 7.07107
+
+[node name="PhsyxPickup" type="CharacterBody2D" groups=["levelstuff"]]
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("1_af2nx")
+
+[node name="Pickup" parent="." instance=ExtResource("2_mk6li")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cumd1")

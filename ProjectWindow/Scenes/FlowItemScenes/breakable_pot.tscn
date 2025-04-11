@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://pacnx66vq3vs"]
+
+[ext_resource type="PackedScene" uid="uid://dyv8n55i2m1w7" path="res://Scenes/FlowItemScenes/breakable.tscn" id="1_s7jnf"]
+[ext_resource type="Texture2D" uid="uid://derfqnuhv7qb0" path="res://Assets/Sprites/levels/placeholder/breakable_placeholder.png" id="2_uye6i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaour"]
+atlas = ExtResource("2_uye6i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhttm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaour")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BreakablePot" instance=ExtResource("1_s7jnf")]
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_jhttm")
+autoplay = "default"
