@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8it2uuydbfwc"
-path="res://.godot/imported/lightmask.png-94d73cea254b1f3725895f9ca0d39ed5.ctex"
+path="res://.godot/imported/lightmask.png-2e88afa0d6efad45d7cf42a21eadffa2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/lightmask.png"
-dest_files=["res://.godot/imported/lightmask.png-94d73cea254b1f3725895f9ca0d39ed5.ctex"]
+source_file="res://Assets/Sprites/Items/lightmask.png"
+dest_files=["res://.godot/imported/lightmask.png-2e88afa0d6efad45d7cf42a21eadffa2.ctex"]
 
 [params]
 
