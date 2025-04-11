@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://cye0ywfwe3wo0" path="res://Scripts/HealthSystem/hurtbox.gd" id="11_gymyn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
-radius = 3.0
+radius = 5.0
 height = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
@@ -122,10 +122,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx1dd"]
-size = Vector2(52, 7)
+size = Vector2(18, 7)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 7
+collision_mask = 65
 script = ExtResource("1_v0iea")
 
 [node name="Health" type="Node" parent="."]
@@ -191,7 +192,7 @@ script = ExtResource("9_f1ek2")
 metadata/_custom_type_script = "uid://dle1tft7k67rn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(33, 0)
+position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_tx1dd")
 disabled = true
 

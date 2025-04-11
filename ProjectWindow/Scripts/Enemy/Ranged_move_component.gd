@@ -17,3 +17,4 @@ func get_movement_direction() -> float:
 
 func wants_jump() -> bool:
 	return false
+	

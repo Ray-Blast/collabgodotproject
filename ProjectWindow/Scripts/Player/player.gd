@@ -9,7 +9,7 @@ class_name Player extends CharacterBody2D
 
 var can_attack: bool = true
 
-var attack_length: float = 33.0
+var attack_length: float = 16.0
 
 
 func _ready() -> void:
@@ -17,8 +17,20 @@ func _ready() -> void:
 	# that way they can move and react accordingly
 	state_machine.init(self, animations,move_component,health_component )
 
+# do later
+#func checkIfAttackHits():
+	#var ray = RayCast2D.new()
+	#add_child(ray)
+	#ray.set_collision_mask_value(7, true)
+	#ray.target_position = Vector2(hit_coll.position.x *2, 0)
+	#if ray.is_colliding() == true:
+		#print("ahh")
+	#print(ray)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("primary") && can_attack:
+		#checkIfAttackHits()
 		weaponTimer.start()
 		can_attack = false
 		hit_coll.disabled = false
@@ -39,7 +51,6 @@ func _process(delta: float) -> void:
 
 func _on_health_health_depleted() -> void:
 	state_machine.process_health(health_component.get_health())
-
 
 func _on_weapon_attack_timer_timeout() -> void:
 	can_attack = true
