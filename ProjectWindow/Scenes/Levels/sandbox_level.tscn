@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dsvll7ksjotbx" path="res://Assets/Sprites/levels/placeholder/testSpritesForLevels.png" id="3_itn4d"]
 [ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/FlowItemScenes/pickup.tscn" id="4_2eifb"]
 [ext_resource type="Texture2D" uid="uid://b6nf5uggh3rei" path="res://Assets/Sprites/levels/placeholder/backgroundTestSpritesForLevels.png" id="4_t3gu0"]
+[ext_resource type="PackedScene" uid="uid://djueowfhkrgwm" path="res://Scenes/EnemyScenes/enemy_melee.tscn" id="8_2eifb"]
 [ext_resource type="PackedScene" uid="uid://cjwmw07n2pyqn" path="res://Scenes/FlowItemScenes/breakable_torch.tscn" id="8_itn4d"]
 [ext_resource type="PackedScene" uid="uid://pacnx66vq3vs" path="res://Scenes/FlowItemScenes/breakable_pot.tscn" id="8_x1ogi"]
-[ext_resource type="PackedScene" uid="uid://b1gx33k7wl7w8" path="res://Scenes/FlowItemScenes/phsyx_pickup.tscn" id="9_2eifb"]
 
 [sub_resource type="Curve2D" id="Curve2D_bk67w"]
 _data = {
@@ -166,12 +166,6 @@ position = Vector2(-55, -170)
 [node name="Pickup2" parent="LevelDesign/pickups" instance=ExtResource("4_2eifb")]
 position = Vector2(56, -167)
 
-[node name="Pickup3" parent="LevelDesign/pickups" instance=ExtResource("4_2eifb")]
-position = Vector2(46, -5)
-
-[node name="PhsyxPickup" parent="LevelDesign/pickups" instance=ExtResource("9_2eifb")]
-position = Vector2(39, -69)
-
 [node name="breakables" type="Node" parent="LevelDesign"]
 
 [node name="BreakableTorch" parent="LevelDesign/breakables" instance=ExtResource("8_itn4d")]
@@ -193,10 +187,10 @@ position = Vector2(-185, -170)
 position = Vector2(-180, -47)
 
 [node name="BreakablePot" parent="LevelDesign/breakables" instance=ExtResource("8_x1ogi")]
-position = Vector2(-71, -9)
+position = Vector2(-158, -10)
 
 [node name="BreakablePot2" parent="LevelDesign/breakables" instance=ExtResource("8_x1ogi")]
-position = Vector2(185, -8)
+position = Vector2(-123, -9)
 
 [node name="BreakablePot3" parent="LevelDesign/breakables" instance=ExtResource("8_x1ogi")]
 position = Vector2(88, -152)
@@ -215,3 +209,6 @@ position_smoothing_enabled = true
 drag_vertical_enabled = true
 drag_top_margin = 0.5
 drag_bottom_margin = 0.5
+
+[node name="EnemyMelee" parent="." instance=ExtResource("8_2eifb")]
+position = Vector2(-48, -18)

@@ -12,7 +12,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
-	print(health_component.current_health)
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:

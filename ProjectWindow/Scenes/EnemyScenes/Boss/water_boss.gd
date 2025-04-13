@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = $state_machine
 @onready var move_component: Node = $move_component
 @onready var health_component: Health = $Health
+@onready var attack_state_machine: StateMachine = $attack_state_machine
 
 func _ready() -> void:
 	state_machine.init(self, animations, move_component,health_component)
@@ -12,7 +13,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
-	print(health_component.current_health)
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:

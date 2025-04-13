@@ -19,13 +19,11 @@ func change_state(new_state: State) -> void:
 	current_state = new_state
 	current_state.enter()
 	
-
 func process_physics(delta: float) -> void:
 	var new_state = current_state.process_physics(delta)
 	if new_state:
 		change_state(new_state)
 	
-
 func process_input(event: InputEvent) -> void:
 	var new_state = current_state.process_input(event)
 	if new_state:
@@ -37,6 +35,7 @@ func process_frame(delta: float) -> void:
 		change_state(new_state)
 
 func process_health(current_health: float) -> void:
+	
 	var new_state = current_state.process_health(current_health)
 	if new_state:
 		change_state(new_state)
