@@ -1,16 +1,13 @@
-[gd_scene load_steps=33 format=4 uid="uid://c0xdx34f1l8up"]
+[gd_scene load_steps=30 format=4 uid="uid://c0xdx34f1l8up"]
 
 [ext_resource type="PackedScene" uid="uid://dh0nciotk3wfb" path="res://Scenes/player.tscn" id="1_g057g"]
 [ext_resource type="PackedScene" uid="uid://b5bdn3i5y7gpk" path="res://Scenes/FlowItemScenes/platform_base.tscn" id="2_t3gu0"]
 [ext_resource type="Texture2D" uid="uid://dsvll7ksjotbx" path="res://Assets/Sprites/levels/placeholder/testSpritesForLevels.png" id="3_itn4d"]
 [ext_resource type="PackedScene" uid="uid://btyvh6a67yg5y" path="res://Scenes/FlowItemScenes/pickup.tscn" id="4_2eifb"]
 [ext_resource type="Texture2D" uid="uid://b6nf5uggh3rei" path="res://Assets/Sprites/levels/placeholder/backgroundTestSpritesForLevels.png" id="4_t3gu0"]
-[ext_resource type="PackedScene" uid="uid://c6n100wk03los" path="res://Scenes/EnemyScenes/enemy_ranged.tscn" id="6_x1ogi"]
 [ext_resource type="PackedScene" uid="uid://cjwmw07n2pyqn" path="res://Scenes/FlowItemScenes/breakable_torch.tscn" id="8_itn4d"]
 [ext_resource type="PackedScene" uid="uid://pacnx66vq3vs" path="res://Scenes/FlowItemScenes/breakable_pot.tscn" id="8_x1ogi"]
 [ext_resource type="PackedScene" uid="uid://b1gx33k7wl7w8" path="res://Scenes/FlowItemScenes/phsyx_pickup.tscn" id="9_2eifb"]
-[ext_resource type="PackedScene" uid="uid://djueowfhkrgwm" path="res://Scenes/EnemyScenes/enemy_melee.tscn" id="10_0bbnx"]
-[ext_resource type="PackedScene" uid="uid://crqvcafilbveu" path="res://Scenes/EnemyScenes/enemy_brusier.tscn" id="11_x1ogi"]
 
 [sub_resource type="Curve2D" id="Curve2D_bk67w"]
 _data = {
@@ -133,12 +130,6 @@ sources/0 = SubResource("TileSetAtlasSource_itn4d")
 
 [node name="SandboxLevel" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_g057g")]
-position = Vector2(-87, -22)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(4, 4)
-
 [node name="LevelDesign" type="Node" parent="."]
 
 [node name="Platforms" type="Node" parent="LevelDesign"]
@@ -153,7 +144,6 @@ loop = false
 [node name="CanvasModulate" type="CanvasModulate" parent="LevelDesign/LighitngStuff"]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="LevelDesign/LighitngStuff"]
-visible = false
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 
@@ -214,13 +204,14 @@ position = Vector2(88, -152)
 [node name="BreakablePot4" parent="LevelDesign/breakables" instance=ExtResource("8_x1ogi")]
 position = Vector2(-136, -152)
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node" parent="LevelDesign"]
 
-[node name="EnemyMelee" parent="Enemies" instance=ExtResource("10_0bbnx")]
-position = Vector2(-111, -10)
+[node name="Player" parent="." instance=ExtResource("1_g057g")]
+position = Vector2(-87, -22)
 
-[node name="EnemyRanged" parent="Enemies" instance=ExtResource("6_x1ogi")]
-position = Vector2(176, -60)
-
-[node name="EnemyBrusier" parent="Enemies" instance=ExtResource("11_x1ogi")]
-position = Vector2(29, -11)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.5
+drag_bottom_margin = 0.5
