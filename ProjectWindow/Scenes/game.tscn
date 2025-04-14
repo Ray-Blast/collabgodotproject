@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://7hvgnk2j6jsb"]
+[gd_scene load_steps=2 format=3 uid="uid://cfnm3nlaqeouv"]
 
-[ext_resource type="Script" uid="uid://ca7fepx8ty16y" path="res://Scripts/game_manager.gd" id="1_3dryh"]
-[ext_resource type="PackedScene" uid="uid://c0xdx34f1l8up" path="res://Scenes/Levels/sandbox_level.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://chqjx1aammopc" path="res://Scenes/levels/sandbox_level.tscn" id="1_ebmjs"]
 
 [node name="Game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("1_3dryh")
-
-[node name="SandboxLevel" parent="." instance=ExtResource("2_qxrlw")]
+[node name="sandboxLevel" parent="." instance=ExtResource("1_ebmjs")]

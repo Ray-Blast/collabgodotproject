@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://jp6f244g26vo"]
+
+[ext_resource type="Script" uid="uid://tfx7nvdh3fo0" path="res://Components/Health/health.gd" id="1_0gtn7"]
+[ext_resource type="Script" uid="uid://bwbhc62b75lws" path="res://Scenes/breakable/breakables.gd" id="1_0jvll"]
+[ext_resource type="Texture2D" uid="uid://6f07cnyb28x8" path="res://Assets/placeholder/torch_placeholder.png" id="1_n2i7t"]
+[ext_resource type="Script" uid="uid://cph5es5xvcmhh" path="res://Components/Health/hurtbox.gd" id="3_0jvll"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrxk7"]
+atlas = ExtResource("1_n2i7t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hc47x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrxk7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hc47x"]
+size = Vector2(6, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3vk"]
+size = Vector2(28, 34)
+
+[node name="breakables" type="StaticBody2D"]
+script = ExtResource("1_0jvll")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_0gtn7")
+max_health = 1.0
+metadata/_custom_type_script = "uid://tfx7nvdh3fo0"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hc47x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hc47x")
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_0jvll")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cph5es5xvcmhh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_ur3vk")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
