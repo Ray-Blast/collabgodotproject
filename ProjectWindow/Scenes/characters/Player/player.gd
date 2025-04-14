@@ -6,30 +6,42 @@ class_name Player extends CharacterBody2D
 @onready var health_component: Health = $Health
 @onready var weaponTimer: Timer = $weaponAttack_Timer
 @onready var hit_box: HitBox = $HitBox
+@onready var projectile_offset: Node2D = $projectileOffset
 
+var throwable = load("res://Scenes/throwable/throwable.tscn")
 
+var direction = 1
 var attack_length: float = 16.0
 
-
 func _ready() -> void:
-	# Initialize the state machine, passing a reference of the player to the states,
-	# that way they can move and react accordingly
 	state_machine.init(self, animations,move_component,health_component )
 
+func spawn_instance_logic(instance: Node2D) -> void:
+	instance.direction = direction
+	instance.position.x = (self.position.x)
+	instance.position.y = position.y
+	get_parent().add_child(instance)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("primary"):
 		weaponTimer.start()
+	elif event.is_action_pressed("secondary"):
+		var instance = throwable.instantiate()
+		var callable = spawn_instance_logic.bind(instance)
+		callable.call_deferred()
+		
 	else:
 		state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
 	if velocity.x < 0:
 		hit_box.get_child(0).position.x = -attack_length
+		direction = -1
 	elif velocity.x >0:
 		hit_box.get_child(0).position.x = attack_length
+		direction = 1
 	state_machine.process_physics(delta)
-	
 	
 
 func _process(delta: float) -> void:

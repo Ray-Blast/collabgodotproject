@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b582s0pmrgf4k"]
+
+[ext_resource type="Script" uid="uid://mhpwifdqv1vr" path="res://Scenes/throwable/throwable.gd" id="1_a5lhw"]
+[ext_resource type="Script" uid="uid://c2pi0kn814keb" path="res://Components/Health/hitbox.gd" id="1_oe62b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5lhw"]
+size = Vector2(20, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s30t7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtced"]
+size = Vector2(22, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s30t7"]
+size = Vector2(36, 14)
+
+[node name="Throwable" type="AnimatableBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_a5lhw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a5lhw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s30t7")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_mtced")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_oe62b")
+metadata/_custom_type_script = "uid://c2pi0kn814keb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_s30t7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

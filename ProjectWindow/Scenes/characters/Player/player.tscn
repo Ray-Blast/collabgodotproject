@@ -47,6 +47,9 @@ height = 18.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_g7tw3")
 
+[node name="projectileOffset" type="Node2D" parent="."]
+position = Vector2(17, 1)
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_y7lyb")
 max_health = 1.0
@@ -112,7 +115,6 @@ metadata/_custom_type_script = "uid://c2pi0kn814keb"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(17, 1)
 shape = SubResource("RectangleShape2D_hrkl7")
-disabled = true
 
 [node name="weaponAttack_Timer" type="Timer" parent="."]
 wait_time = 0.25

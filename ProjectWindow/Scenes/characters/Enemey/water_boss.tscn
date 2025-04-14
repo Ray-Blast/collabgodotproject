@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=3 uid="uid://bqs5tlpffc04f"]
+
+[ext_resource type="Script" uid="uid://pksmxc1eyn4j" path="res://Scenes/characters/Enemey/water_boss.gd" id="1_24e0q"]
+[ext_resource type="Script" uid="uid://tfx7nvdh3fo0" path="res://Components/Health/health.gd" id="1_uoqd0"]
+[ext_resource type="Script" uid="uid://d3ybobujgo2td" path="res://Components/StateMachine/state_machine.gd" id="2_k0mpj"]
+[ext_resource type="Script" uid="uid://be7tr6so8lhfr" path="res://Components/StateMachine/States/idle.gd" id="3_q8dm3"]
+[ext_resource type="Script" uid="uid://cejb5ted78m63" path="res://Components/StateMachine/States/move.gd" id="4_o5hy3"]
+[ext_resource type="Script" uid="uid://boi5comk821q1" path="res://Components/StateMachine/States/fall.gd" id="5_24e0q"]
+[ext_resource type="Script" uid="uid://capbd83cany1f" path="res://Components/StateMachine/States/jump.gd" id="6_pn1tj"]
+[ext_resource type="Script" uid="uid://x4ur0kefpocf" path="res://Components/StateMachine/States/death.gd" id="7_hinr1"]
+[ext_resource type="Script" uid="uid://cph5es5xvcmhh" path="res://Components/Health/hurtbox.gd" id="8_o5hy3"]
+[ext_resource type="Script" uid="uid://c2pi0kn814keb" path="res://Components/Health/hitbox.gd" id="9_24e0q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_do8ep"]
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uoqd0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5hy3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_24e0q"]
+radius = 14.0
+height = 34.0
+
+[node name="WaterBoss" type="CharacterBody2D"]
+script = ExtResource("1_24e0q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_do8ep")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uoqd0")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_uoqd0")
+metadata/_custom_type_script = "uid://tfx7nvdh3fo0"
+
+[node name="movement_component" type="Node" parent="."]
+
+[node name="loco_state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_k0mpj")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="loco_state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "death_state")]
+script = ExtResource("3_q8dm3")
+fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+move_state = NodePath("../move")
+death_state = NodePath("../death")
+move_speed = 100.0
+
+[node name="move" type="Node" parent="loco_state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
+script = ExtResource("4_o5hy3")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+jump_state = NodePath("../jump")
+death_state = NodePath("../death")
+move_speed = 100.0
+
+[node name="fall" type="Node" parent="loco_state_machine" node_paths=PackedStringArray("idle_state", "move_state", "death_state")]
+script = ExtResource("5_24e0q")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+death_state = NodePath("../death")
+move_speed = 100.0
+
+[node name="jump" type="Node" parent="loco_state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "death_state")]
+script = ExtResource("6_pn1tj")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+death_state = NodePath("../death")
+move_speed = 100.0
+
+[node name="death" type="Node" parent="loco_state_machine"]
+script = ExtResource("7_hinr1")
+move_speed = 100.0
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+position = Vector2(0, -1)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_o5hy3")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cph5es5xvcmhh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_o5hy3")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("9_24e0q")
+metadata/_custom_type_script = "uid://c2pi0kn814keb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_24e0q")
+
+[node name="attack_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="boss_attack_component" type="Node" parent="."]

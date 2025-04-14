@@ -28,8 +28,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1nrr"]
-radius = 35.0
-height = 70.0
+radius = 14.0
+height = 38.0
 
 [node name="EnemyMelee" type="CharacterBody2D"]
 script = ExtResource("1_e20wr")
