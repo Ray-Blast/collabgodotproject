@@ -23,12 +23,27 @@ region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pmukk"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hrkl7")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
 "speed": 5.0
 }, {
 "frames": [],
@@ -64,7 +79,7 @@ shape = SubResource("CapsuleShape2D_lju0b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pmukk")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
@@ -77,6 +92,7 @@ fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+animation_name = "idle"
 move_speed = 150.0
 
 [node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
@@ -85,6 +101,7 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 death_state = NodePath("../death")
+animation_name = "move"
 move_speed = 150.0
 
 [node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "death_state")]
@@ -92,6 +109,7 @@ script = ExtResource("5_pog4j")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+animation_name = "fall"
 move_speed = 150.0
 
 [node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "death_state")]
@@ -100,10 +118,12 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
+animation_name = "jump"
 move_speed = 150.0
 
 [node name="death" type="Node" parent="state_machine"]
 script = ExtResource("8_g3qbd")
+animation_name = "death"
 move_speed = 150.0
 
 [node name="HitBox" type="Area2D" parent="."]

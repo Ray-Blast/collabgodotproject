@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr4dhyhtlv5w3"
-path="res://.godot/imported/testSpritesForLevels.png-f5089f93268f45b331c307f833072891.ctex"
+uid="uid://cp31drn5ni2q0"
+path="res://.godot/imported/lightmask.png-02de97e045b1c4fcb969b56730876b73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/placeholder/testSpritesForLevels.png"
-dest_files=["res://.godot/imported/testSpritesForLevels.png-f5089f93268f45b331c307f833072891.ctex"]
+source_file="res://Assets/placeholder/lightmask.png"
+dest_files=["res://.godot/imported/lightmask.png-02de97e045b1c4fcb969b56730876b73.ctex"]
 
 [params]
 

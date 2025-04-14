@@ -32,7 +32,7 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_mtced")
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 script = ExtResource("1_oe62b")
 metadata/_custom_type_script = "uid://c2pi0kn814keb"

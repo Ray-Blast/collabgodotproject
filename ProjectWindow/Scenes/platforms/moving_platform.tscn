@@ -48,6 +48,7 @@ _data = {
 script = ExtResource("1_1t7h7")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(0, -5.96046e-08)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
 texture = ExtResource("2_gjpuu")
@@ -59,9 +60,10 @@ shape = SubResource("RectangleShape2D_1t7h7")
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(265, 0)
 rotation = -0.00377357
-progress = 265.002
+rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+position = Vector2(0, -5.96046e-08)
 remote_path = NodePath("../AnimatableBody2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

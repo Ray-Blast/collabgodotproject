@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqs5tlpffc04f"]
+[gd_scene load_steps=17 format=3 uid="uid://bqs5tlpffc04f"]
 
 [ext_resource type="Script" uid="uid://pksmxc1eyn4j" path="res://Scenes/characters/Enemey/water_boss.gd" id="1_24e0q"]
 [ext_resource type="Script" uid="uid://tfx7nvdh3fo0" path="res://Components/Health/health.gd" id="1_uoqd0"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://x4ur0kefpocf" path="res://Components/StateMachine/States/death.gd" id="7_hinr1"]
 [ext_resource type="Script" uid="uid://cph5es5xvcmhh" path="res://Components/Health/hurtbox.gd" id="8_o5hy3"]
 [ext_resource type="Script" uid="uid://c2pi0kn814keb" path="res://Components/Health/hitbox.gd" id="9_24e0q"]
+[ext_resource type="Script" uid="uid://cxgu5oob5vw8p" path="res://Scenes/characters/Enemey/waterboss_attack_component.gd" id="11_pn1tj"]
+[ext_resource type="Script" uid="uid://dwulfkshxirrs" path="res://Scenes/characters/Enemey/projectileAttack.gd" id="12_hinr1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_do8ep"]
 radius = 8.0
@@ -100,3 +102,11 @@ shape = SubResource("CapsuleShape2D_24e0q")
 one_shot = true
 
 [node name="boss_attack_component" type="Node" parent="."]
+script = ExtResource("11_pn1tj")
+
+[node name="attack_state_machine" type="Node" parent="."]
+script = ExtResource("2_k0mpj")
+metadata/_custom_type_script = "uid://d3ybobujgo2td"
+
+[node name="Attack1" type="Node" parent="attack_state_machine"]
+script = ExtResource("12_hinr1")
