@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://beweb13tqus5d"]
+
+[ext_resource type="StyleBox" uid="uid://5hhw5xvkwk1x" path="res://Scenes/Menu/themes/buttonStyleFlat.tres" id="1_lwrfv"]
+[ext_resource type="StyleBox" uid="uid://y5ghlmlr1kir" path="res://Scenes/Menu/themes/flatThemeStilebox.tres" id="1_s7h1d"]
+[ext_resource type="StyleBox" uid="uid://chyt6hmmo44kk" path="res://Scenes/Menu/themes/buttonSecondary.tres" id="2_my7du"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_84e7b"]
+content_margin_bottom = 20.0
+
+[resource]
+Button/styles/normal = ExtResource("1_lwrfv")
+Label/font_sizes/font_size = 30
+Label/styles/normal = SubResource("StyleBoxEmpty_84e7b")
+NameGameButton/base_type = &"Button"
+NameGameButton/styles/normal = ExtResource("2_my7du")
+PanelContainer/styles/panel = ExtResource("1_s7h1d")
+VBoxContainer/constants/separation = 20

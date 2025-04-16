@@ -1,0 +1,121 @@
+[gd_scene load_steps=17 format=3 uid="uid://bkt4lbnb5hox5"]
+
+[ext_resource type="Script" uid="uid://d4nmwvj8rjc0o" path="res://Scenes/characters/Enemey/enemy_melee.gd" id="1_e20wr"]
+[ext_resource type="Script" uid="uid://tfx7nvdh3fo0" path="res://Components/Health/health.gd" id="2_ri4ff"]
+[ext_resource type="Script" uid="uid://duitwkvbsq38k" path="res://Components/movement/melee_move_component.gd" id="3_5lcoq"]
+[ext_resource type="Script" uid="uid://d3ybobujgo2td" path="res://Components/StateMachine/state_machine.gd" id="3_8cr30"]
+[ext_resource type="Script" uid="uid://cph5es5xvcmhh" path="res://Components/Health/hurtbox.gd" id="3_q1nrr"]
+[ext_resource type="Script" uid="uid://be7tr6so8lhfr" path="res://Components/StateMachine/States/regularStates/idle.gd" id="4_5lcoq"]
+[ext_resource type="Texture2D" uid="uid://ch4bre5o48p0q" path="res://Assets/Characters/Collab_Zombie_Enemy.png" id="4_lekk2"]
+[ext_resource type="Script" uid="uid://c2pi0kn814keb" path="res://Components/Health/hitbox.gd" id="4_ri4ff"]
+[ext_resource type="Script" uid="uid://cejb5ted78m63" path="res://Components/StateMachine/States/regularStates/move.gd" id="5_lekk2"]
+[ext_resource type="Script" uid="uid://boi5comk821q1" path="res://Components/StateMachine/States/regularStates/fall.gd" id="6_rl5oe"]
+[ext_resource type="Script" uid="uid://capbd83cany1f" path="res://Components/StateMachine/States/regularStates/jump.gd" id="7_dm2sg"]
+[ext_resource type="Script" uid="uid://x4ur0kefpocf" path="res://Components/StateMachine/States/regularStates/death.gd" id="8_dvljh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i5omt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl5oe"]
+atlas = ExtResource("4_lekk2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhdhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl5oe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1nrr"]
+radius = 14.0
+height = 38.0
+
+[node name="EnemyMelee" type="CharacterBody2D"]
+script = ExtResource("1_e20wr")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_ri4ff")
+max_health = 1.0
+metadata/_custom_type_script = "uid://tfx7nvdh3fo0"
+
+[node name="move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("3_5lcoq")
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_i5omt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qhdhd")
+animation = &"idle"
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_8cr30")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "death_state")]
+script = ExtResource("4_5lcoq")
+fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+move_state = NodePath("../move")
+death_state = NodePath("../death")
+move_speed = 70.0
+
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
+script = ExtResource("5_lekk2")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+jump_state = NodePath("../jump")
+death_state = NodePath("../death")
+move_speed = 70.0
+
+[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "death_state")]
+script = ExtResource("6_rl5oe")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+death_state = NodePath("../death")
+move_speed = 70.0
+
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "death_state")]
+script = ExtResource("7_dm2sg")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+death_state = NodePath("../death")
+move_speed = 50.0
+
+[node name="death" type="Node" parent="state_machine"]
+script = ExtResource("8_dvljh")
+move_speed = 50.0
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_q1nrr")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cph5es5xvcmhh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_i5omt")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_ri4ff")
+metadata/_custom_type_script = "uid://c2pi0kn814keb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_q1nrr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
