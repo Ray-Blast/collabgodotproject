@@ -6,7 +6,7 @@ class_name Player extends CharacterBody2D
 @onready var health_component: Health = $Health
 @onready var weaponTimer: Timer = $weaponAttack_Timer
 @onready var hit_box: HitBox = $HitBox
-@onready var projectile_offset: Node2D = $projectileOffset
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var throwable = load("res://Scenes/throwable/throwable.tscn")
 
@@ -14,7 +14,7 @@ var direction = 1
 var attack_length: float = 16.0
 
 func _ready() -> void:
-	state_machine.init(self, animations,move_component,health_component )
+	state_machine.init(self, animations,move_component,health_component, animation_player,  )
 
 func spawn_instance_logic(instance: Node2D) -> void:
 	instance.direction = direction
@@ -25,6 +25,13 @@ func spawn_instance_logic(instance: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("primary"):
+		state_machine.process_attack()
+		
+		
+		#animations.play("attack")
+		#if animations.is_playing() == true:
+			#print(state_machine.current_state.animation_name)
+			#animation_player.play("attack")
 		weaponTimer.start()
 	elif event.is_action_pressed("secondary"):
 		var instance = throwable.instantiate()
@@ -50,5 +57,10 @@ func _process(delta: float) -> void:
 func _on_health_health_depleted() -> void:
 	state_machine.process_health(health_component.get_health())
 
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	animations.play(state_machine.current_state.animation_name)
+
+
 func _on_weapon_attack_timer_timeout() -> void:
-	pass 
+	animation_player.play("RESET")

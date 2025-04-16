@@ -1,34 +1,108 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqebdfm8hpfcl"]
+[gd_scene load_steps=24 format=3 uid="uid://cqebdfm8hpfcl"]
 
 [ext_resource type="Script" uid="uid://tfx7nvdh3fo0" path="res://Components/Health/health.gd" id="1_cghkd"]
+[ext_resource type="Script" uid="uid://borfp8w04nqgm" path="res://Scenes/characters/Enemey/enemy_flier.gd" id="1_n3wma"]
+[ext_resource type="Texture2D" uid="uid://dkwm2d6vapsdl" path="res://Assets/Characters/Bat_Idle_and_Fly.png" id="2_78gwk"]
 [ext_resource type="Script" uid="uid://cph5es5xvcmhh" path="res://Components/Health/hurtbox.gd" id="2_psv2u"]
 [ext_resource type="Script" uid="uid://c2pi0kn814keb" path="res://Components/Health/hitbox.gd" id="3_78gwk"]
 [ext_resource type="Script" uid="uid://d3ybobujgo2td" path="res://Components/StateMachine/state_machine.gd" id="4_n3wma"]
-[ext_resource type="Script" uid="uid://be7tr6so8lhfr" path="res://Components/StateMachine/States/idle.gd" id="5_yecft"]
-[ext_resource type="Script" uid="uid://cejb5ted78m63" path="res://Components/StateMachine/States/move.gd" id="6_70rlf"]
-[ext_resource type="Script" uid="uid://boi5comk821q1" path="res://Components/StateMachine/States/fall.gd" id="7_w82xe"]
-[ext_resource type="Script" uid="uid://capbd83cany1f" path="res://Components/StateMachine/States/jump.gd" id="8_1n5yq"]
-[ext_resource type="Script" uid="uid://x4ur0kefpocf" path="res://Components/StateMachine/States/death.gd" id="9_r8t3a"]
+[ext_resource type="Script" uid="uid://dfode88u27ld3" path="res://Components/StateMachine/States/flierStates/flier_idle.gd" id="7_psv2u"]
+[ext_resource type="Script" uid="uid://bd3dup2gc8lho" path="res://Components/StateMachine/States/flierStates/flier_move.gd" id="8_n3wma"]
+[ext_resource type="Script" uid="uid://x4ur0kefpocf" path="res://Components/StateMachine/States/regularStates/death.gd" id="9_r8t3a"]
 [ext_resource type="Script" uid="uid://dwvopuvrl3m0a" path="res://Components/movement/flier_move_component.gd" id="10_psv2u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y0ubr"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3wma"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78gwk"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yecft"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70rlf"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w82xe"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n5yq"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8t3a"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0ubr"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fx5u"]
+atlas = ExtResource("2_78gwk")
+region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3fx5u"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3wma")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78gwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yecft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70rlf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w82xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n5yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8t3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0ubr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fx5u")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cghkd"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_psv2u"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_78gwk"]
 
 [node name="EnemyFlier" type="CharacterBody2D"]
+script = ExtResource("1_n3wma")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("1_cghkd")
+max_health = 1.0
 metadata/_custom_type_script = "uid://tfx7nvdh3fo0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -37,15 +111,11 @@ shape = SubResource("CapsuleShape2D_y0ubr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3fx5u")
 animation = &"idle"
-
-[node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("2_psv2u")
-metadata/_custom_type_script = "uid://cph5es5xvcmhh"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CapsuleShape2D_cghkd")
+autoplay = "idle"
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("3_78gwk")
 metadata/_custom_type_script = "uid://c2pi0kn814keb"
 
@@ -56,45 +126,38 @@ shape = SubResource("CapsuleShape2D_psv2u")
 script = ExtResource("4_n3wma")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "death_state")]
-script = ExtResource("5_yecft")
-fall_state = NodePath("../fall")
-jump_state = NodePath("../jump")
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "death_state")]
+script = ExtResource("7_psv2u")
 move_state = NodePath("../move")
 death_state = NodePath("../death")
-animation_name = "idle"
-move_speed = 150.0
+move_speed = 70.0
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "death_state")]
-script = ExtResource("6_70rlf")
-fall_state = NodePath("../fall")
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "death_state")]
+script = ExtResource("8_n3wma")
 idle_state = NodePath("../idle")
-jump_state = NodePath("../jump")
 death_state = NodePath("../death")
 animation_name = "move"
-move_speed = 150.0
-
-[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "death_state")]
-script = ExtResource("7_w82xe")
-idle_state = NodePath("../idle")
-move_state = NodePath("../move")
-death_state = NodePath("../death")
-animation_name = "fall"
-move_speed = 150.0
-
-[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "death_state")]
-script = ExtResource("8_1n5yq")
-fall_state = NodePath("../fall")
-idle_state = NodePath("../idle")
-move_state = NodePath("../move")
-death_state = NodePath("../death")
-animation_name = "jump"
-move_speed = 150.0
+move_speed = 70.0
 
 [node name="death" type="Node" parent="state_machine"]
 script = ExtResource("9_r8t3a")
 animation_name = "death"
-move_speed = 150.0
+move_speed = 50.0
 
-[node name="move_component" type="Node" parent="."]
+[node name="move_component" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("10_psv2u")
+parent = NodePath("..")
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_psv2u")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cph5es5xvcmhh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_78gwk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

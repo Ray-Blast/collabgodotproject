@@ -9,6 +9,7 @@ var parent: CharacterBody2D
 var animations: AnimatedSprite2D
 var move_component
 var health_component
+var animation_player
 
 func enter() -> void:
 	animations.play(animation_name)
@@ -32,4 +33,7 @@ func get_jump() -> bool:
 	return move_component.wants_jump()
 	
 func process_health(_current_health: float) -> State:
+	return null
+
+func process_attack() -> State:
 	return null

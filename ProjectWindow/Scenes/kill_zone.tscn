@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp7svpcx0tfju"]
+
+[ext_resource type="Script" uid="uid://c2pi0kn814keb" path="res://Components/Health/hitbox.gd" id="1_d6013"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6013"]
+size = Vector2(4518, 74)
+
+[node name="KillZone" type="Node2D"]
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_d6013")
+damage = 100
+metadata/_custom_type_script = "uid://c2pi0kn814keb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_d6013")

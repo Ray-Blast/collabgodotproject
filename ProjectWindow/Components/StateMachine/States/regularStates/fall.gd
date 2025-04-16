@@ -4,6 +4,8 @@ extends State
 @export var move_state: State
 @export var death_state: State
 
+@export var attack_state: State
+
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 
@@ -24,3 +26,8 @@ func process_health(current_health: float) -> State:
 	if current_health <= 0:
 		return death_state
 	return null
+
+
+func process_attack() -> State:
+	return attack_state
+	

@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://jp6f244g26vo"]
+[gd_scene load_steps=12 format=3 uid="uid://jp6f244g26vo"]
 
 [ext_resource type="Script" uid="uid://tfx7nvdh3fo0" path="res://Components/Health/health.gd" id="1_0gtn7"]
 [ext_resource type="Script" uid="uid://bwbhc62b75lws" path="res://Scenes/breakable/breakables.gd" id="1_0jvll"]
 [ext_resource type="Texture2D" uid="uid://6f07cnyb28x8" path="res://Assets/placeholder/torch_placeholder.png" id="1_n2i7t"]
 [ext_resource type="Script" uid="uid://cph5es5xvcmhh" path="res://Components/Health/hurtbox.gd" id="3_0jvll"]
+[ext_resource type="Texture2D" uid="uid://dsy3eqs51vom7" path="res://Assets/placeholder/breakable_placeholder.png" id="3_jlt6h"]
 [ext_resource type="Texture2D" uid="uid://cp31drn5ni2q0" path="res://Assets/placeholder/lightmask.png" id="5_ur3vk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk71h"]
+atlas = ExtResource("3_jlt6h")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lrxk7"]
 atlas = ExtResource("1_n2i7t")
@@ -14,10 +19,18 @@ region = Rect2(0, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mk71h")
+}],
+"loop": true,
+"name": &"pot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lrxk7")
 }],
 "loop": true,
-"name": &"default",
+"name": &"torch",
 "speed": 5.0
 }]
 
@@ -36,7 +49,10 @@ max_health = 1.0
 metadata/_custom_type_script = "uid://tfx7nvdh3fo0"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+visibility_layer = 0
 sprite_frames = SubResource("SpriteFrames_hc47x")
+animation = &"pot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hc47x")

@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=4 uid="uid://chqjx1aammopc"]
+[gd_scene load_steps=20 format=4 uid="uid://chqjx1aammopc"]
 
 [ext_resource type="PackedScene" uid="uid://ck8nns6idw30f" path="res://Scenes/characters/Player/player.tscn" id="1_rjwcx"]
+[ext_resource type="PackedScene" uid="uid://cqebdfm8hpfcl" path="res://Scenes/characters/Enemey/enemy_flier.tscn" id="2_mi63w"]
 [ext_resource type="PackedScene" uid="uid://dor5quho4i5ak" path="res://Scenes/pickup/pickup.tscn" id="2_thw0i"]
-[ext_resource type="PackedScene" uid="uid://bkt4lbnb5hox5" path="res://Scenes/characters/Enemey/enemy_melee.tscn" id="2_y3oir"]
 [ext_resource type="PackedScene" uid="uid://jp6f244g26vo" path="res://Scenes/breakable/breakables.tscn" id="3_h2ugs"]
 [ext_resource type="Texture2D" uid="uid://bmcky2ma3bl2" path="res://Assets/placeholder/backgroundTestSpritesForLevels.png" id="4_h2ugs"]
 [ext_resource type="Texture2D" uid="uid://c0orlqvvpawoj" path="res://Assets/placeholder/backgroundBGTestSpritesForLevels.png" id="5_gkd3g"]
+[ext_resource type="PackedScene" uid="uid://bkt4lbnb5hox5" path="res://Scenes/characters/Enemey/enemy_melee.tscn" id="6_7pwy5"]
 [ext_resource type="PackedScene" uid="uid://prbm00qy8ybn" path="res://Scenes/platforms/moving_platform.tscn" id="6_uyfff"]
+[ext_resource type="PackedScene" uid="uid://bqs5tlpffc04f" path="res://Scenes/characters/Enemey/water_boss.tscn" id="7_gkd3g"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gkd3g"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -23,7 +25,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_i1o08"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uyfff"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7pwy5"]
 texture = ExtResource("4_h2ugs")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_gkd3g")
@@ -143,15 +145,15 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_uyfff")
+sources/0 = SubResource("TileSetAtlasSource_7pwy5")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mi63w"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3pkpn"]
 texture = ExtResource("5_gkd3g")
 0:0/0 = 0
 1:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7pwy5"]
-sources/0 = SubResource("TileSetAtlasSource_mi63w")
+sources/0 = SubResource("TileSetAtlasSource_3pkpn")
 
 [sub_resource type="Curve2D" id="Curve2D_uyfff"]
 _data = {
@@ -166,10 +168,13 @@ point_count = 5
 [node name="Player" parent="Character" instance=ExtResource("1_rjwcx")]
 
 [node name="Camera2D" type="Camera2D" parent="Character/Player"]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.0
 drag_top_margin = 0.5
+drag_right_margin = 0.0
 drag_bottom_margin = 0.5
 
 [node name="Pickup" parent="Character" instance=ExtResource("2_thw0i")]
@@ -190,16 +195,19 @@ tile_set = SubResource("TileSet_7pwy5")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="EnemyMelee" parent="Enemies" instance=ExtResource("2_y3oir")]
-position = Vector2(60, 6)
+[node name="EnemyFlier" parent="Enemies" instance=ExtResource("2_mi63w")]
+position = Vector2(91, -3)
+
+[node name="EnemyMelee" parent="Enemies" instance=ExtResource("6_7pwy5")]
+position = Vector2(-171, -18)
 
 [node name="Breakables" type="Node" parent="."]
 
 [node name="breakables" parent="Breakables" instance=ExtResource("3_h2ugs")]
-position = Vector2(-47, 8)
+position = Vector2(-63, 5)
 
 [node name="breakables2" parent="Breakables" instance=ExtResource("3_h2ugs")]
-position = Vector2(149, -39)
+position = Vector2(146, -42)
 
 [node name="breakables3" parent="Breakables" instance=ExtResource("3_h2ugs")]
 position = Vector2(427, -33)
@@ -235,3 +243,6 @@ curve = SubResource("Curve2D_uyfff")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="lighting"]
 color = Color(0.687215, 0.687215, 0.687215, 1)
+
+[node name="WaterBoss" parent="." instance=ExtResource("7_gkd3g")]
+position = Vector2(65, 9)

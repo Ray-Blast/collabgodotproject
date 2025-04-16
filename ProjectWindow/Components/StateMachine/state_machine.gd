@@ -3,12 +3,13 @@ class_name State_Machine extends Node
 @export var starting_state: State
 var current_state: State
 
-func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component, health_component) -> void:
+func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component, health_component, animation_player: AnimationPlayer) -> void:
 	for child in get_children():
 		child.parent = parent
 		child.animations = animations
 		child.move_component = move_component
 		child.health_component = health_component
+		child.animation_player = animation_player
 
 	change_state(starting_state)
 
@@ -37,6 +38,15 @@ func process_frame(delta: float) -> void:
 		change_state(new_state)
 
 func process_health(current_health: float) -> void:
+	print("ah")
 	var new_state = current_state.process_health(current_health)
 	if new_state:
 		change_state(new_state)
+
+func process_attack() -> void:
+	var new_state = current_state.process_attack()
+	if new_state:
+		change_state(new_state) 
+	#var new_state = current_state.process_attack()
+	#if new_state:
+		#change_state(new_state)

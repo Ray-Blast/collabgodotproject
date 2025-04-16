@@ -1,38 +1,56 @@
-[gd_scene load_steps=7 format=3 uid="uid://b582s0pmrgf4k"]
+[gd_scene load_steps=9 format=3 uid="uid://b582s0pmrgf4k"]
 
 [ext_resource type="Script" uid="uid://mhpwifdqv1vr" path="res://Scenes/throwable/throwable.gd" id="1_a5lhw"]
 [ext_resource type="Script" uid="uid://c2pi0kn814keb" path="res://Components/Health/hitbox.gd" id="1_oe62b"]
+[ext_resource type="Texture2D" uid="uid://c1ryfho1monqv" path="res://Assets/Characters/MC_and_weapons_sheet.png" id="2_s30t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5lhw"]
 size = Vector2(20, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtced"]
+atlas = ExtResource("2_s30t7")
+region = Rect2(48, 32, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_s30t7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtced")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtced"]
-size = Vector2(22, 10)
+size = Vector2(16, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s30t7"]
-size = Vector2(36, 14)
+size = Vector2(20, 8)
 
 [node name="Throwable" type="AnimatableBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_a5lhw")
+speed = 7.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a5lhw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 4)
 sprite_frames = SubResource("SpriteFrames_s30t7")
 autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_mtced")
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_layer = 6
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_oe62b")
 metadata/_custom_type_script = "uid://c2pi0kn814keb"
@@ -41,7 +59,8 @@ metadata/_custom_type_script = "uid://c2pi0kn814keb"
 shape = SubResource("RectangleShape2D_s30t7")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 autostart = true
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
