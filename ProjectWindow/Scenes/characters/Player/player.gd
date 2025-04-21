@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 @onready var weaponTimer: Timer = $weaponAttack_Timer
 @onready var hit_box: HitBox = $HitBox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var cam: Camera2D = $Camera2D
 
 var throwable = load("res://Scenes/throwable/throwable.tscn")
 
@@ -26,12 +27,6 @@ func spawn_instance_logic(instance: Node2D) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("primary"):
 		state_machine.process_attack()
-		
-		
-		#animations.play("attack")
-		#if animations.is_playing() == true:
-			#print(state_machine.current_state.animation_name)
-			#animation_player.play("attack")
 		weaponTimer.start()
 	elif event.is_action_pressed("secondary"):
 		var instance = throwable.instantiate()

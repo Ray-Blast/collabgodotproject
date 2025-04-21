@@ -10,7 +10,6 @@ var current_gui_scene
 
 func _ready() -> void:
 	Global.game_controller = self
-	current_gui_scene	
 	
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
 	if current_gui_scene != null:
@@ -20,18 +19,18 @@ func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool
 			current_gui_scene.visible = false #keeps in memory and running
 		else:
 			gui.remove_child(current_gui_scene) #keeps in memory, not run
-		var new = load(new_scene).instantiate()
-		gui.add_child(new)
-		current_gui_scene = new
+	var new = load(new_scene).instantiate()
+	gui.add_child(new)
+	current_gui_scene = new
+	
 
 func change_2d_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
-	if current_2d_scene != null:
-		if delete:
-			current_2d_scene.queue_free()
-		elif keep_running:
-			current_2d_scene.visible = false #keeps in memory and running
-		else:
-			gui.remove_child(current_2d_scene) #keeps in memory, not run
-		var new = load(new_scene).instantiate()
-		world_2d.add_child(new)
-		current_2d_scene = new
+	if delete:
+		current_2d_scene.queue_free()
+	elif keep_running:
+		current_2d_scene.visible = false
+	else:
+		world_2d.remove_child(current_2d_scene)
+	var new = load(new_scene).instantiate()
+	world_2d.add_child(new)
+	current_2d_scene = new

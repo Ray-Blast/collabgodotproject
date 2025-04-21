@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ck8nns6idw30f"]
+[gd_scene load_steps=43 format=3 uid="uid://ck8nns6idw30f"]
 
 [ext_resource type="Script" uid="uid://crsxwj33o05ky" path="res://Scenes/characters/Player/player.gd" id="1_g7tw3"]
 [ext_resource type="Script" uid="uid://d3ybobujgo2td" path="res://Components/StateMachine/state_machine.gd" id="2_k2bq6"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://tiv57maxeati" path="res://Components/movement/player_movement.gd" id="10_r4a8w"]
 [ext_resource type="Script" uid="uid://bpt5v6mx6ywv7" path="res://Components/StateMachine/Attacks/attackState.gd" id="11_w2lyp"]
 [ext_resource type="Script" uid="uid://cph5es5xvcmhh" path="res://Components/Health/hurtbox.gd" id="12_hrkl7"]
+[ext_resource type="Script" uid="uid://c2kx8jcgwdvoq" path="res://Scenes/characters/Player/hitstun.gd" id="12_uecir"]
 [ext_resource type="Script" uid="uid://dy6ijpvmi0cq0" path="res://Scenes/characters/Player/player_attack_component.gd" id="14_86srh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lju0b"]
@@ -194,11 +195,6 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pog4j"]
@@ -219,30 +215,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitBox/AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/AnimatedSprite2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 3)]
-}
 
 [sub_resource type="Animation" id="Animation_hrkl7"]
 resource_name = "attack"
@@ -258,30 +230,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitBox/AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0682999),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"default", &"attack"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/AnimatedSprite2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 3), Vector2(12, 3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w2lyp"]
@@ -365,6 +313,10 @@ move_state = NodePath("../move")
 jump_state = NodePath("../jump")
 move_speed = 75.0
 
+[node name="hitstun" type="Node" parent="state_machine"]
+script = ExtResource("12_uecir")
+move_speed = 75.0
+
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
@@ -379,7 +331,7 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HitBox"]
 position = Vector2(0, 3)
 sprite_frames = SubResource("SpriteFrames_6kqff")
-autoplay = "default"
+animation = &"attack"
 
 [node name="weaponAttack_Timer" type="Timer" parent="."]
 wait_time = 0.35

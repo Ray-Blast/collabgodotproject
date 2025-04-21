@@ -7,19 +7,25 @@
 [ext_resource type="Texture2D" uid="uid://dsy3eqs51vom7" path="res://Assets/placeholder/breakable_placeholder.png" id="3_jlt6h"]
 [ext_resource type="Texture2D" uid="uid://cp31drn5ni2q0" path="res://Assets/placeholder/lightmask.png" id="5_ur3vk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mk71h"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hc47x"]
+size = Vector2(6, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3vk"]
+size = Vector2(28, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur3vk"]
 atlas = ExtResource("3_jlt6h")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrxk7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlt6h"]
 atlas = ExtResource("1_n2i7t")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hc47x"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlt6h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mk71h")
+"texture": SubResource("AtlasTexture_ur3vk")
 }],
 "loop": true,
 "name": &"pot",
@@ -27,32 +33,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lrxk7")
+"texture": SubResource("AtlasTexture_jlt6h")
 }],
 "loop": true,
 "name": &"torch",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hc47x"]
-size = Vector2(6, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3vk"]
-size = Vector2(28, 34)
-
 [node name="Breakables" type="StaticBody2D"]
+collision_layer = 128
+collision_mask = 128
 script = ExtResource("1_0jvll")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("1_0gtn7")
 max_health = 1.0
 metadata/_custom_type_script = "uid://tfx7nvdh3fo0"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-sprite_frames = SubResource("SpriteFrames_hc47x")
-animation = &"pot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hc47x")
@@ -67,9 +63,14 @@ metadata/_custom_type_script = "uid://cph5es5xvcmhh"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_ur3vk")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="light" type="PointLight2D" parent="."]
+enabled = false
 shadow_enabled = true
 texture = ExtResource("5_ur3vk")
 texture_scale = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jlt6h")
+animation = &"pot"
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

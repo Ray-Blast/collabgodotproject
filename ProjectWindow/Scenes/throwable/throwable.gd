@@ -11,7 +11,7 @@ func _ready() -> void:
 	if direction < 0:
 		animated_sprite_2d.flip_h = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	position.x += direction * speed
 
 func _on_timer_timeout() -> void:

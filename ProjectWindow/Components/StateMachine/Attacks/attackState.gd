@@ -8,6 +8,7 @@ var attackLength = 1
 signal resetTimer()
 
 func enter() -> void:
+	parent.velocity.x = 0
 	print("attacking")
 	animation_player.play("attack")
 	
@@ -21,6 +22,7 @@ func process_input(_event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
+	parent.move_and_slide()
 	attack_cooldown(delta)
 	return null
 
@@ -28,3 +30,8 @@ func attack_cooldown(delta: float) -> void:
 	attackLength -= delta
 	if attackLength == 0:
 		resetTimer.emit()
+
+func process_frame(_delta: float) -> State:
+	if attackLength <= 0:
+		return idle_state
+	return null

@@ -1,18 +1,22 @@
 extends StaticBody2D
 
 @onready var pickup = load("res://Scenes/pickup/pickup.tscn")
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var light: PointLight2D = $light
+@onready var anims: AnimatedSprite2D = $AnimatedSprite2D
 
-enum breakable_type {TORCH, POT}
-@export var typeofBreakable: String = "torch"
+@export var lightOn: bool = false
+
+enum typeOfBreakable {POT, TORCH}
+@export var breakable:typeOfBreakable = 0
 
 func _ready() -> void:
-	match breakable_type:
-		1:
-			animated_sprite_2d.play(typeofBreakable)
-		2:
-			animated_sprite_2d.play(typeofBreakable)
 	
+	match breakable:
+		0:
+			anims.play("pot")
+		1:
+			anims.play("torch")
+			light.enabled
 
 func spawn_instance_logic(instance: Node2D) -> void:
 	get_parent().add_child(instance)

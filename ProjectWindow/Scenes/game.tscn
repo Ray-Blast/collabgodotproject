@@ -1,22 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfnm3nlaqeouv"]
+[gd_scene load_steps=4 format=3 uid="uid://cfnm3nlaqeouv"]
 
 [ext_resource type="Script" uid="uid://dwr5d2p7n4ll6" path="res://game_controller.gd" id="2_qxrlw"]
-[ext_resource type="PackedScene" uid="uid://khxpn3nr0bpl" path="res://Scenes/levels/level_1_1.tscn" id="2_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://dintbdvul5n15" path="res://Scenes/Menu/main_menu.tscn" id="2_wrm1d"]
+[ext_resource type="Script" uid="uid://6wnvb6wndvft" path="res://Scenes/game_manager.gd" id="3_wrm1d"]
 
 [node name="Game" type="Node2D"]
 
-[node name="GameController" type="Node" parent="."]
+[node name="GameController" type="Node" parent="." node_paths=PackedStringArray("world_3d", "world_2d", "gui")]
 script = ExtResource("2_qxrlw")
+world_3d = NodePath("World3D")
+world_2d = NodePath("World2D")
+gui = NodePath("GUI")
 metadata/_custom_type_script = "uid://dwr5d2p7n4ll6"
 
 [node name="World3D" type="Node3D" parent="GameController"]
 
 [node name="World2D" type="Node2D" parent="GameController"]
 
-[node name="Level1-1" parent="GameController/World2D" instance=ExtResource("2_wrm1d")]
-
 [node name="GUI" type="Control" parent="GameController"]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" parent="GameController/GUI" instance=ExtResource("2_wrm1d")]
+layout_mode = 0
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 355.0
+offset_top = 125.0
+offset_right = 755.0
+offset_bottom = 539.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AudioController" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_wrm1d")
