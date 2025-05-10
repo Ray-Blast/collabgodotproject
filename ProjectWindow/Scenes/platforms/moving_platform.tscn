@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://prbm00qy8ybn"]
+
+[ext_resource type="Script" uid="uid://jyem7a3cs0il" path="res://Scenes/platforms/moving_platform.gd" id="1_1t7h7"]
+[ext_resource type="Texture2D" uid="uid://dhruqmuc7yjkf" path="res://Assets/placeholder/tempPlatform.png" id="2_gjpuu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t7h7"]
+size = Vector2(46, 10)
+
+[sub_resource type="Animation" id="Animation_s485k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gjpuu"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.56, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gs57"]
+_data = {
+&"RESET": SubResource("Animation_s485k"),
+&"move": SubResource("Animation_gjpuu")
+}
+
+[node name="MovingPlatform" type="Path2D"]
+script = ExtResource("1_1t7h7")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(0, -5.96046e-08)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("2_gjpuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_1t7h7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = -0.00377357
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+position = Vector2(2.24922e-10, -5.96042e-08)
+rotation = 0.00377357
+remote_path = NodePath("../../AnimatableBody2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5gs57")
+}

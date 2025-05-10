@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfnm3nlaqeouv"]
+
+[ext_resource type="PackedScene" uid="uid://chqjx1aammopc" path="res://Scenes/levels/sandbox_level.tscn" id="1_ebmjs"]
+
+[node name="Game" type="Node2D"]
+
+[node name="sandboxLevel" parent="." instance=ExtResource("1_ebmjs")]

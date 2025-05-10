@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://caa01r4fqd7f8"
+path="res://.godot/imported/The Sewers.mp3-ccf1c04e0f4f41c88716a655b40dfbd2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/The Sewers.mp3"
+dest_files=["res://.godot/imported/The Sewers.mp3-ccf1c04e0f4f41c88716a655b40dfbd2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
